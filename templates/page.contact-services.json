@@ -56,11 +56,11 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "{{ closest.page.content }}",
+                "text": "<p>{{ closest.page.content }}</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "paragraph",
+                "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
