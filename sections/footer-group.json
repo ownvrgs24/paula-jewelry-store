@@ -411,11 +411,21 @@
     "section_mV3WNP": {
       "type": "section",
       "blocks": {
+        "footer_copyright_jweRK8": {
+          "type": "footer-copyright",
+          "settings": {
+            "show_powered_by": true,
+            "text_color": "",
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "payment_icons_BDHXAb": {
           "type": "payment-icons",
           "name": "t:names.payment_icons",
           "settings": {
-            "horizontal_alignment": "flex-start",
+            "horizontal_alignment": "flex-end",
             "gap": 10,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -436,7 +446,8 @@
       },
       "block_order": [
         "footer_copyright_jweRK8",
-        "footer_policy_list_VCdnpa"
+        "footer_policy_list_VCdnpa",
+        "payment_icons_BDHXAb"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -447,7 +458,6 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
         "section_width": "page-width",
         "gap": 24,
         "background_color": "{{ settings.color_palette.background }}",
@@ -455,35 +465,6 @@
         "divider_color": "{{ settings.color_palette.color2 }}",
         "padding-block-start": 20,
         "padding-block-end": 48
-      }
-    },
-    "footer_m9NzUG": {
-      "type": "footer",
-      "blocks": {
-        "payment_icons_footer": {
-          "type": "payment-icons",
-          "name": "t:names.payment_icons",
-          "settings": {
-            "horizontal_alignment": "flex-end",
-            "gap": 10,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "payment_icons_footer"
-      ],
-      "name": "t:names.footer",
-      "settings": {
-        "section_width": "page-width",
-        "gap": 20,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 30,
-        "padding-block-end": 30
       }
     },
     "newsletter_popup": {
