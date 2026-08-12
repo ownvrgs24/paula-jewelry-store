@@ -117,7 +117,7 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 10,
+            "padding-block-start": 100,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -204,7 +204,7 @@
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
-        "vertical_alignment": "flex-end",
+        "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
