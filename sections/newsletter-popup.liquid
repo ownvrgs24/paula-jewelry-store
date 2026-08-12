@@ -1,0 +1,130 @@
+{% comment %}
+  Newsletter signup that slides in from the bottom corner after a delay and stays
+  dismissed for the number of days the merchant picks. Add it to the footer group
+  so it renders on every page.
+{% endcomment %}
+
+{{ 'section-newsletter-popup.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'newsletter-popup.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+{%- capture popup_form -%}
+  {%- form 'customer', id: 'NewsletterPopup', class: 'newsletter-popup__form' -%}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <label class="visually-hidden" for="NewsletterPopupEmail">
+      {{- 'blocks.email_signup.label' | t -}}
+    </label>
+    <input
+      id="NewsletterPopupEmail"
+      class="newsletter-popup__input"
+      type="email"
+      name="contact[email]"
+      placeholder="{{ s.placeholder | escape }}"
+      autocomplete="email"
+      autocorrect="off"
+      autocapitalize="off"
+      required
+    >
+    <button type="submit" class="newsletter-popup__button">{{ s.button_label | escape }}</button>
+
+    {%- if form.errors -%}
+      <p class="newsletter-popup__message" data-newsletter-popup-result>
+        {{- form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email -}}
+      </p>
+    {%- elsif form.posted_successfully? -%}
+      <p class="newsletter-popup__message" data-newsletter-popup-result>
+        {{- 'blocks.email_signup.success' | t -}}
+      </p>
+    {%- endif -%}
+  {%- endform -%}
+{%- endcapture -%}
+
+<aside
+  class="newsletter-popup"
+  data-newsletter-popup
+  data-delay="{{ s.delay }}"
+  data-frequency="{{ s.frequency }}"
+  {% if popup_form contains 'data-newsletter-popup-result' %}
+    data-posted
+  {% endif %}
+  aria-label="{{ s.heading | escape }}"
+  {{ section.shopify_attributes }}
+>
+  <button
+    class="newsletter-popup__close"
+    type="button"
+    data-newsletter-popup-close
+    aria-label="{{ 'accessibility.close_dialog' | t }}"
+  >
+    {{- 'icon-close.svg' | inline_asset_content -}}
+  </button>
+
+  <h2 class="newsletter-popup__heading">{{ s.heading | escape }}</h2>
+
+  {%- if s.body != blank -%}
+    <div class="newsletter-popup__body">{{ s.body }}</div>
+  {%- endif -%}
+
+  {{ popup_form }}
+</aside>
+
+{% schema %}
+{
+  "name": "Newsletter popup",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Signup for our newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Description",
+      "default": "<p>Be first to hear about new arrivals, private previews and one-of-a-kind pieces.</p>",
+      "info": "Tell customers what they get for subscribing. Keep it to one or two lines."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email field placeholder",
+      "default": "E-mail"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Delay before showing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "info": "How long a visitor browses before the popup appears."
+    },
+    {
+      "type": "range",
+      "id": "frequency",
+      "label": "Days before showing again",
+      "min": 1,
+      "max": 90,
+      "step": 1,
+      "unit": "d",
+      "default": 14,
+      "info": "Once a visitor closes the popup, it stays hidden for this many days."
+    }
+  ]
+}
+{% endschema %}
