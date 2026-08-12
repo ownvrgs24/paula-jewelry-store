@@ -6,37 +6,39 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */
-{
+ */{
   "type": "header",
   "name": "t:names.header",
   "sections": {
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
-        "announcement_BxgCk9": {
-          "type": "_announcement",
+        "countdown_sale": {
+          "type": "_countdown-announcement",
+          "name": "Countdown",
           "settings": {
-            "text": "Welcome to our store",
-            "link": "",
+            "text": "Summer Sale — up to 40% off",
+            "link": "shopify://collections/all",
+            "link_label": "Shop now",
+            "end_date": "2026-11-25",
+            "end_time": "00:00",
+            "expiration_behavior": "leave",
+            "unit_labels": "Days,Hrs,Min,Sec",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none",
-            "text_color": ""
-          },
-          "blocks": {}
+            "text_color": "",
+            "timer_color": ""
+          }
         }
       },
       "block_order": [
-        "announcement_BxgCk9"
+        "countdown_sale"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.color4 }}",
         "divider_width": 1,
         "divider_color": "{{ settings.color_palette.color2 }}",
         "padding-block-start": 15,
