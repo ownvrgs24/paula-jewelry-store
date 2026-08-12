@@ -57,9 +57,9 @@
               "name": "t:names.text",
               "settings": {
                 "text": "{{ closest.page.content }}",
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
+                "alignment": "right",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -73,7 +73,7 @@
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 100,
+                "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
               "blocks": {}
