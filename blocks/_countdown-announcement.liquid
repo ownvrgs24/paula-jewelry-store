@@ -177,7 +177,9 @@
   }
 
   .countdown__link:hover {
-    border-color: var(--color-accent);
+    /* currentColor, not --color-accent: the bar sits on the dark surface, where an ink
+       accent underline would be invisible. This tracks whatever text color the bar uses. */
+    border-color: currentColor;
   }
 
   .countdown__timer {

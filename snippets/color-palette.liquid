@@ -175,10 +175,13 @@
     --palette-lightest-rgb: {{ palette_lightest.rgb }};
     --palette-darkest: {{ palette_darkest }};
     --palette-darkest-rgb: {{ palette_darkest.rgb }};
-    /* Brand tokens. Gold has three forms because one is not readable everywhere:
-       --color-accent       fills, rules, hover states only. 3.33:1 on shell: never text.
-       --color-accent-text  gold TEXT on a light background. 4.56:1.
-       --color-accent-on-dark  gold text on --color-vitrine. 7.59:1. */
+    /* Brand tokens. The palette is monochrome, so the accent is ink rather than a hue:
+       --color-accent          fills and rules. #000000, the system's base surface.
+       --color-accent-text     ink text on a light background. #1C1C1C, 15.87:1 on white.
+       --color-accent-on-dark  text on --color-vitrine. #FFFFFF, 21:1.
+       --color-vitrine and --color-accent are both #000000 here: in a monochrome system the
+       dark surface and the accent fill are the same ink. They stay separate tokens so a
+       merchant can tint one without the other. */
     --color-accent: {{ settings.color_palette.color3 }};
     --color-accent-rgb: {{ settings.color_palette.color3.rgb }};
     --color-accent-text: {{ settings.color_palette.color6 }};
@@ -200,13 +203,6 @@
     --color-primary-button-hover-background: {{ effective_primary_button_hover_background }};
     --color-primary-button-hover-border: {{ effective_primary_button_hover_border }};
 
-    /* Reference hover: solid button goes gold, ghost button fills with ink. Overrides
-       Horizon's computed hover-shift. Gold takes INK text (4.55:1) -- the reference used
-       white, which is 3.99:1 and fails AA. */
-    --color-primary-button-hover-background: var(--color-accent);
-    --color-primary-button-hover-border: var(--color-accent);
-    --color-primary-button-hover-text: var(--color-foreground);
-
     --color-secondary-button-text: rgb({{ settings.palette_secondary_button_text.rgba }});
     --color-secondary-button-background: rgb({{ settings.palette_secondary_button_background.rgba }});
     --color-secondary-button-border: rgb({{ settings.palette_secondary_button_border.rgba }});
@@ -215,7 +211,7 @@
     --color-secondary-button-hover-border: {{ effective_secondary_button_hover_border }};
 
     /* Ghost button has a transparent background, so Horizon's hover-shift produces no
-       visible change. Fill it with ink instead, as the reference does. 15.14:1. */
+       visible change. Fill it with ink instead: white on #1C1C1C is 15.87:1. */
     --color-secondary-button-hover-background: var(--color-foreground);
     --color-secondary-button-hover-border: var(--color-foreground);
     --color-secondary-button-hover-text: var(--color-background);

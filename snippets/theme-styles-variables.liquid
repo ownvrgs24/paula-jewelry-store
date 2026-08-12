@@ -154,19 +154,18 @@
     --letter-spacing-sm: 0.06em;
 
     /* Font families
-       Brand faces (loaded in fonts.liquid) are prepended to Shopify's picked font, which
-       stays as the fallback. Side effect: the theme-editor font pickers no longer change
-       what you see. Delete the four quoted names to hand control back. */
-    --font-body--family: "Jost", {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+       All four roles are Nunito, picked in theme settings and served by Shopify's font
+       library. Weight is what separates them: body 400, subheading/accent 600, heading 700. */
+    --font-body--family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
     --font-body--style: {{ settings.type_body_font.style }};
     --font-body--weight: {{ settings.type_body_font.weight }};
-    --font-subheading--family: "Jost", {{ settings.type_subheading_font.family }}, {{ settings.type_subheading_font.fallback_families }};
+    --font-subheading--family: {{ settings.type_subheading_font.family }}, {{ settings.type_subheading_font.fallback_families }};
     --font-subheading--style: {{ settings.type_subheading_font.style }};
     --font-subheading--weight: {{ settings.type_subheading_font.weight }};
-    --font-heading--family: "Bodoni Moda", {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
+    --font-heading--family: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
     --font-heading--style: {{ settings.type_heading_font.style }};
     --font-heading--weight: {{ settings.type_heading_font.weight }};
-    --font-accent--family: "DM Mono", {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
+    --font-accent--family: {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
     --font-accent--style: {{ settings.type_accent_font.style }};
     --font-accent--weight: {{ settings.type_accent_font.weight }};
 
@@ -231,7 +230,8 @@
 
     --line-height--body-tight: 1.2;
     --line-height--body-normal: 1.4;
-    --line-height--body-loose: 1.6;
+    /* 1.65 = the 23.1px leading the system specifies on 14px body text. */
+    --line-height--body-loose: 1.65;
 
     /* Typography presets */
     {% liquid
@@ -344,8 +344,9 @@
       endfor
     %}
 
-    /* Hardcoded font sizes */
-    --font-size--3xs: 0.625rem;
+    /* Hardcoded font sizes. 3xs..xl are the system's xs(11) sm(12) md(13) lg(14) xl(18)
+       2xl(20) steps; 2xl and up are theme-only sizes the system does not define. */
+    --font-size--3xs: 0.6875rem;
     --font-size--2xs: 0.75rem;
     --font-size--xs: 0.8125rem;
     --font-size--sm: 0.875rem;
@@ -393,10 +394,10 @@
     --opacity-85: 0.85;
     --opacity-90: 0.9;
     --opacity-subdued-text: 0.8;
-    /* Stock 0.6 renders muted text at 4.47:1 on the shell background, below WCAG AA. */
+    /* Stock 0.6 renders muted text at 4.49:1 on white, a hair below WCAG AA. 0.7 is 6.0:1. */
     --opacity-muted-text: 0.7;
 
-    --shadow-button: 0 2px 3px rgb(0 0 0 / 20%);
+    --shadow-button: 0 2px 10px rgb(28 28 28 / 0.15);
     --gradient-image-overlay: linear-gradient(to top, rgb(0 0 0 / 0.5), transparent);
 
     /* Spacing */
@@ -465,12 +466,14 @@
     /* Animation */
     --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
     --ease-out-quad: cubic-bezier(0.32, 0.72, 0, 1);
-    --animation-speed-fast: 0.0625s;
-    --animation-speed: 0.125s;
-    --animation-speed-slow: 0.2s;
-    --animation-speed-medium: 0.15s;
+    /* Durations come from the system's motion scale: instant 100, fast 150, normal 200,
+       slow 250, slower 300. Names differ from the scale's; the values are the scale. */
+    --animation-speed-fast: 0.1s;
+    --animation-speed: 0.15s;
+    --animation-speed-slow: 0.25s;
+    --animation-speed-medium: 0.2s;
     --animation-easing: ease-in-out;
-    --drawer-animation-speed: 0.2s;
+    --drawer-animation-speed: 0.3s;
     --animation-values: var(--animation-speed) var(--animation-easing);
     --animation-timing-hover: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --animation-timing-active: cubic-bezier(0.5, 0, 0.75, 0);
