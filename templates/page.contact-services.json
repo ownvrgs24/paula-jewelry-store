@@ -87,15 +87,15 @@
           "type": "group",
           "name": "t:names.column",
           "settings": {
-            "content_direction": "row",
+            "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 8,
-            "width": "fill",
+            "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
@@ -123,11 +123,37 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "text_apXLaq": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>Contact Us Today</h3>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "contact_form_egNmEk": {
               "type": "contact-form",
               "settings": {
                 "width": "custom",
-                "custom_width": 100,
+                "custom_width": 85,
                 "width_mobile": "fit-content",
                 "custom_width_mobile": 100,
                 "background_color": "",
@@ -164,6 +190,7 @@
             }
           },
           "block_order": [
+            "text_apXLaq",
             "contact_form_egNmEk"
           ]
         }
