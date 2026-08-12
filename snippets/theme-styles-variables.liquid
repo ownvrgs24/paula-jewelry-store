@@ -390,7 +390,8 @@
     --opacity-85: 0.85;
     --opacity-90: 0.9;
     --opacity-subdued-text: 0.8;
-    --opacity-muted-text: 0.6;
+    /* 0.6 renders muted text at 4.03:1 on the ivory background, below WCAG AA. */
+    --opacity-muted-text: 0.7;
 
     --shadow-button: 0 2px 3px rgb(0 0 0 / 20%);
     --gradient-image-overlay: linear-gradient(to top, rgb(0 0 0 / 0.5), transparent);
