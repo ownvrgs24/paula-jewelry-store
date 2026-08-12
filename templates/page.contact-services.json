@@ -58,8 +58,8 @@
               "settings": {
                 "text": "{{ closest.page.content }}",
                 "width": "100%",
-                "max_width": "normal",
-                "alignment": "right",
+                "max_width": "none",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -126,7 +126,7 @@
             "contact_form_egNmEk": {
               "type": "contact-form",
               "settings": {
-                "width": "fit-content",
+                "width": "custom",
                 "custom_width": 100,
                 "width_mobile": "fit-content",
                 "custom_width_mobile": 100,
@@ -140,7 +140,7 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 100
+                "padding-inline-end": 0
               },
               "blocks": {
                 "submit-button": {
