@@ -153,17 +153,20 @@
     /* Letter spacing */
     --letter-spacing-sm: 0.06em;
 
-    /* Font families */
-    --font-body--family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    /* Font families
+       Brand faces (loaded in fonts.liquid) are prepended to Shopify's picked font, which
+       stays as the fallback. Side effect: the theme-editor font pickers no longer change
+       what you see. Delete the four quoted names to hand control back. */
+    --font-body--family: "Jost", {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
     --font-body--style: {{ settings.type_body_font.style }};
     --font-body--weight: {{ settings.type_body_font.weight }};
-    --font-subheading--family: {{ settings.type_subheading_font.family }}, {{ settings.type_subheading_font.fallback_families }};
+    --font-subheading--family: "Jost", {{ settings.type_subheading_font.family }}, {{ settings.type_subheading_font.fallback_families }};
     --font-subheading--style: {{ settings.type_subheading_font.style }};
     --font-subheading--weight: {{ settings.type_subheading_font.weight }};
-    --font-heading--family: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
+    --font-heading--family: "Bodoni Moda", {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
     --font-heading--style: {{ settings.type_heading_font.style }};
     --font-heading--weight: {{ settings.type_heading_font.weight }};
-    --font-accent--family: {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
+    --font-accent--family: "DM Mono", {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
     --font-accent--style: {{ settings.type_accent_font.style }};
     --font-accent--weight: {{ settings.type_accent_font.weight }};
 
@@ -390,7 +393,7 @@
     --opacity-85: 0.85;
     --opacity-90: 0.9;
     --opacity-subdued-text: 0.8;
-    /* 0.6 renders muted text at 4.03:1 on the ivory background, below WCAG AA. */
+    /* Stock 0.6 renders muted text at 4.47:1 on the shell background, below WCAG AA. */
     --opacity-muted-text: 0.7;
 
     --shadow-button: 0 2px 3px rgb(0 0 0 / 20%);

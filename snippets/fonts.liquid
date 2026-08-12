@@ -1,3 +1,16 @@
+{%- comment -%}
+  Brand faces are loaded from Google, not Shopify's font library: Bodoni Moda is not
+  available there. The Shopify fonts below still load and act as the fallback stack in
+  theme-styles-variables.liquid, so the page renders if Google is blocked or slow.
+  Removing this block and the four --font-*--family overrides reverts to theme settings.
+{%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+>
+
 {%- unless settings.type_body_font.system? -%}
   {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', fetchpriority: 'low' }}
 {%- endunless -%}
