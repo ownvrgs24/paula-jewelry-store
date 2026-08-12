@@ -398,10 +398,42 @@
   }
 
   .menu-list__link-title {
+    --menu-underline-inset: var(--gap-sm);
+
+    position: relative;
     padding-inline: var(--gap-sm);
   }
   [slot='overflow'] .menu-list__link-title {
+    --menu-underline-inset: 0px;
+
     padding-inline: 0;
+  }
+
+  /* Hover/active underline. Wipes in from the left, out to the right.
+     Lives on the title span because the link's own ::after is the hover
+     safety box, and positioning the list item would collapse the mega menu. */
+  .menu-list__link-title::after {
+    content: '';
+    position: absolute;
+    inset-inline: var(--menu-underline-inset);
+    bottom: -0.25em;
+    height: 1px;
+    background-color: currentcolor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s var(--ease-out-cubic);
+  }
+
+  .menu-list__list-item:where(:hover, :focus-within) .menu-list__link-title::after,
+  .menu-list__link--active .menu-list__link-title::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-list__link-title::after {
+      transition: none;
+    }
   }
 
   .menu-list__list-item:not([slot='overflow']) {
