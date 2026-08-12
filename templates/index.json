@@ -68,7 +68,7 @@
           "type": "text",
           "name": "Supporting text",
           "settings": {
-            "text": "<p>Explore our collection of fine jewelry and timepieces — or bring in a piece you already own for expert repair and service.</p>",
+            "text": "<p>Thoughtfully crafted pieces designed for everyday life.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -134,7 +134,7 @@
               "type": "button",
               "name": "Shop",
               "settings": {
-                "label": "Shop the collection",
+                "label": "Shop Best Sellers",
                 "link": "shopify://collections/all",
                 "open_in_new_tab": false,
                 "style_class": "button",
@@ -153,7 +153,7 @@
               "type": "button",
               "name": "Services",
               "settings": {
-                "label": "Watch & jewelry services",
+                "label": "Explore Collection",
                 "link": "/pages/services",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
