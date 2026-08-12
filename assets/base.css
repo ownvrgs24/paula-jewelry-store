@@ -827,6 +827,10 @@ summary::-webkit-details-marker {
 .button-custom,
 button.shopify-payment-button__button--unbranded {
   --text-align: center;
+  /* Hover fill: a gradient grown from 0 to full width, left to right. Painted above
+     background-color, so the resting colour stays put until the fill covers it. */
+  --button-wipe-duration: var(--animation-speed-slow);
+  --button-wipe-text-delay: var(--animation-speed);
 
   display: grid;
   align-content: center;
@@ -835,6 +839,10 @@ button.shopify-payment-button__button--unbranded {
   color: var(--button-color);
   appearance: none;
   background-color: var(--button-background-color);
+  background-image: linear-gradient(var(--button-fill-color, transparent) 0 100%);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
   border: none;
   font-family: var(--font-paragraph--family);
   font-style: var(--font-paragraph--style);
@@ -842,14 +850,40 @@ button.shopify-payment-button__button--unbranded {
   font-size: var(--font-paragraph--size);
   line-height: var(--font-paragraph--line-height);
   margin-block: 0;
-  transition: color var(--animation-speed) var(--animation-easing),
+  transition: color var(--animation-speed) var(--animation-easing) var(--button-wipe-text-delay),
     box-shadow var(--animation-speed) var(--animation-easing),
-    background-color var(--animation-speed) var(--animation-easing);
+    background-color 0s,
+    background-size var(--button-wipe-duration) var(--ease-out-quad);
   cursor: pointer;
   width: fit-content;
   box-shadow: inset 0 0 0 var(--button-border-width) var(--button-border-color);
   padding-block: var(--button-padding-block);
   padding-inline: var(--button-padding-inline);
+}
+
+.button:hover:not(.button-unstyled, [aria-disabled='true'], :disabled),
+.button-secondary:hover:not([aria-disabled='true']),
+.button-custom:hover,
+button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
+  background-size: 100% 100%;
+  /* background-color swaps only once the fill has covered it, so the sweep is not
+     undercut by the whole button changing colour at the same time. The label waits
+     too: flipping it early leaves half the text on the unfilled side. */
+  transition: color var(--animation-speed) var(--animation-easing) var(--button-wipe-text-delay),
+    box-shadow var(--animation-speed) var(--animation-easing),
+    background-color 0s var(--button-wipe-duration),
+    background-size var(--button-wipe-duration) var(--ease-out-quad);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button-secondary,
+  .button-custom,
+  button.shopify-payment-button__button--unbranded {
+    /* Zero duration collapses the sweep back to the instant colour swap. */
+    --button-wipe-duration: 0s;
+    --button-wipe-text-delay: 0s;
+  }
 }
 
 .button {
@@ -905,6 +939,7 @@ input:not(:placeholder-shown)::placeholder {
 button.shopify-payment-button__button--unbranded {
   --button-color: var(--color-primary-button-text);
   --button-background-color: var(--color-primary-button-background);
+  --button-fill-color: var(--color-primary-button-hover-background);
   --button-border-color: var(--color-primary-button-border);
   --button-border-width: var(--style-border-width-primary);
   --button-focus-outline-color: var(--color-primary-button-focus-outline);
@@ -920,6 +955,7 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
 .button-secondary {
   --button-color: var(--color-secondary-button-text);
   --button-background-color: var(--color-secondary-button-background);
+  --button-fill-color: var(--color-secondary-button-hover-background);
   --button-border-color: var(--color-secondary-button-border);
   --button-border-width: var(--style-border-width-secondary);
 }
@@ -933,6 +969,7 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
 .button-custom {
   --button-color: var(--color-primary-button-text);
   --button-background-color: var(--color-primary-button-background);
+  --button-fill-color: var(--color-primary-button-hover-background);
   --button-border-color: var(--color-primary-button-border);
   --button-border-width: var(--style-border-width-secondary);
   --button-focus-outline-color: var(--color-primary-button-focus-outline);
@@ -958,6 +995,8 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   display: block;
   padding: 0;
   background-color: inherit;
+  /* Link-style buttons carry .button too, so the hover fill has to be turned off here. */
+  background-image: none;
   color: var(--color-foreground);
   border: 0;
   border-radius: 0;

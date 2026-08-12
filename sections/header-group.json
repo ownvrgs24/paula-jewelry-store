@@ -13,26 +13,19 @@
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
-        "countdown_sale": {
-          "type": "_countdown-announcement",
-          "name": "Countdown",
+        "announcement_info": {
+          "type": "_announcement",
           "settings": {
-            "text": "Summer Sale — up to 40% off",
-            "link": "shopify://collections/all",
-            "link_label": "Shop now",
-            "end_date": "2026-11-25",
-            "end_time": "00:00",
-            "expiration_behavior": "leave",
-            "unit_labels": "Days,Hrs,Min,Sec",
+            "text": "Serving San Diego County  •  <a href=\"https:\/\/www.etsy.com\/shop\/ProJewelerDesigns?ref=shop_sugg_market\">Click To Shop Our Etsy Jewelry Store Now!<\/a>  •  Highest Quality Service  •  Escondido: 760.705.9908  •  El Cajon: 619.402.1825",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
-            "text_color": "",
-            "timer_color": ""
+            "letter_spacing": "normal",
+            "case": "none"
           }
         }
       },
       "block_order": [
-        "countdown_sale"
+        "announcement_info"
       ],
       "name": "t:names.announcement_bar",
       "settings": {

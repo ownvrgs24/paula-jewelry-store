@@ -38,11 +38,21 @@
   {%- else -%}
     {%- assign effective_focus_outline_color = effective_background_color -%}
   {%- endif -%}
+  {%- comment -%}
+    A transparent button has no background to shift, so the default hover is a 15% wash
+    the fill sweep cannot show. Invert it instead: fill with the button's own text colour
+    and let resolve-custom-hover pick the label colour that contrasts with it.
+  {%- endcomment -%}
+  {%- if effective_background_color.alpha == 0 -%}
+    {%- assign custom_hover_bg = effective_text_color -%}
+  {%- endif -%}
   {%- capture hover_resolved -%}
     {% render 'resolve-custom-hover',
       base_bg: effective_background_color,
       base_text: effective_text_color,
-      base_border: effective_border_color
+      base_border: effective_border_color,
+      hover_bg: custom_hover_bg,
+      hover_border: custom_hover_bg
     %}
   {%- endcapture -%}
   {%- assign hover_parts = hover_resolved | strip | split: '||' -%}
@@ -52,6 +62,9 @@
   {% style %}
     .button-custom--{{ block_id }} {
       --button-background-color: rgb({{ effective_background_color.rgba }});
+      {%- comment -%} The colour the hover fill sweeps in. Set on the resting state, not on
+      :hover, so the fill keeps its colour while it retracts. {%- endcomment -%}
+      --button-fill-color: {{ effective_hover_bg }};
       --button-color: rgb({{ effective_text_color.rgba }});
       --button-border-color: rgb({{ effective_border_color.rgba }});
       --button-focus-outline-color: rgb({{ effective_focus_outline_color.rgb }});

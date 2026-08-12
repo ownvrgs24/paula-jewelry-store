@@ -68,6 +68,12 @@
     grid-area: stack;
   }
 
+  /* Single announcement: static row, no slideshow width cap */
+  .announcement-bar__slides:has(> :only-child) {
+    max-width: none;
+    width: 100%;
+  }
+
   .announcement-bar__slide {
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
     content-visibility: visible;

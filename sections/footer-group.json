@@ -213,10 +213,22 @@
         "padding-block-start": 20,
         "padding-block-end": 48
       }
+    },
+    "newsletter_popup": {
+      "type": "newsletter-popup",
+      "settings": {
+        "heading": "Signup for our newsletter",
+        "body": "<p>Be first to hear about new arrivals, private previews and one-of-a-kind pieces.</p>",
+        "placeholder": "E-mail",
+        "button_label": "Subscribe",
+        "delay": 5,
+        "frequency": 14
+      }
     }
   },
   "order": [
     "footer_m9NzUG",
-    "footer_utilities_jLGE8U"
+    "footer_utilities_jLGE8U",
+    "newsletter_popup"
   ]
 }
