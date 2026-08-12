@@ -50,7 +50,7 @@
     "page_width": "wide",
     "page_transition_enabled": true,
     "transition_to_main_product": true,
-    "card_hover_effect": "subtle-zoom",
+    "card_hover_effect": "scale",
     "badge_position": "top-right",
     "badge_corner_radius": 0,
     "badge_sale_background_color": "{{ settings.color_palette.foreground }}",
