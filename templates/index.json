@@ -360,7 +360,9 @@
       ],
       "name": "t:names.collections_carousel",
       "settings": {
-        "collection_list": [],
+        "collection_list": [
+          "pendants-necklaces"
+        ],
         "layout_type": "carousel",
         "carousel_on_mobile": false,
         "columns": 3,
