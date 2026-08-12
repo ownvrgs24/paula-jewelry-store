@@ -28,7 +28,7 @@
       autocapitalize="off"
       required
     >
-    <button type="submit" class="newsletter-popup__button">{{ s.button_label | escape }}</button>
+    <button type="submit" class="newsletter-popup__button button">{{ s.button_label | escape }}</button>
 
     {%- if form.errors -%}
       <p class="newsletter-popup__message" data-newsletter-popup-result>
@@ -54,7 +54,7 @@
   {{ section.shopify_attributes }}
 >
   <button
-    class="newsletter-popup__close"
+    class="newsletter-popup__close button-unstyled"
     type="button"
     data-newsletter-popup-close
     aria-label="{{ 'accessibility.close_dialog' | t }}"
