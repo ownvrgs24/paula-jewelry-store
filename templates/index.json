@@ -46,9 +46,9 @@
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
-            "type_preset": "h1",
+            "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "",
+            "font_size": "3.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -476,13 +476,13 @@
         "text_yPhQiK": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Designed With Intention.</strong></p><h1></h1>",
+            "text": "<p>Designed With Intention.</p><h1></h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "5.5rem",
+            "font_size": "3rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -501,7 +501,7 @@
         "text_9N6npw": {
           "type": "text",
           "settings": {
-            "text": "<p>Thoughtfully crafted pieces made for everyday life.</p><p></p>",
+            "text": "<p>We believe great products don't need to be complicated. Every piece is thoughtfully designed, carefully crafted, and made to become part of your everyday.</p><p></p>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
