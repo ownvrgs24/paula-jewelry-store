@@ -87,13 +87,13 @@
           "type": "group",
           "name": "t:names.column",
           "settings": {
-            "content_direction": "column",
+            "content_direction": "row",
             "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
+            "horizontal_alignment": "center",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-start",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 8,
             "width": "fill",
             "custom_width": 100,
@@ -126,9 +126,9 @@
             "contact_form_egNmEk": {
               "type": "contact-form",
               "settings": {
-                "width": "custom",
-                "custom_width": 50,
-                "width_mobile": "custom",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
                 "custom_width_mobile": 100,
                 "background_color": "",
                 "input_style": "default",
@@ -204,6 +204,7 @@
     },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
