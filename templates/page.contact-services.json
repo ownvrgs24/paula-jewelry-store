@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p></p>{{ closest.page.content }}",
+            "text": "{{ closest.page.content }}",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -37,51 +37,10 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "contact_form_NR7yFw": {
-          "type": "contact-form",
-          "name": "t:names.contact_form",
-          "settings": {
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100,
-            "background_color": "",
-            "input_style": "default",
-            "input_background_color": "{{ settings.color_palette.background }}",
-            "input_text_color": "{{ settings.color_palette.foreground }}",
-            "input_border_color": "{{ settings.color_palette.foreground }}",
-            "border_width": 1,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
         }
       },
       "block_order": [
-        "text_3b4kbN",
-        "contact_form_NR7yFw"
+        "text_3b4kbN"
       ],
       "settings": {
         "content_direction": "column",
