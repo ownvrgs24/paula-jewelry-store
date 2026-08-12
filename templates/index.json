@@ -933,7 +933,7 @@
             "icon_XAPKYD": {
               "type": "icon",
               "settings": {
-                "icon": "eye",
+                "icon": "heart",
                 "width": 32,
                 "link": "",
                 "open_in_new_tab": false,
@@ -983,7 +983,7 @@
                 "text_dFjJYd": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Crafted with purpose</p>",
+                    "text": "<p><strong>Thoughtfully crafted</strong></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1008,7 +1008,7 @@
                 "text_QMpH7C": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Everything we do starts with why</p>",
+                    "text": "<p>Details designed to be noticed.</p><p></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1084,7 +1084,7 @@
             "icon_i349RE": {
               "type": "icon",
               "settings": {
-                "icon": "heart",
+                "icon": "dryer",
                 "width": 32,
                 "link": "",
                 "open_in_new_tab": false,
@@ -1159,7 +1159,7 @@
                 "text_gHCTU3": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We believe in building better</p>",
+                    "text": "<p>Thoughtfully selected metals and stones.</p><p></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1235,7 +1235,7 @@
             "icon_KjR9Ya": {
               "type": "icon",
               "settings": {
-                "icon": "silhouette",
+                "icon": "star",
                 "width": 32,
                 "link": "",
                 "open_in_new_tab": false,
@@ -1310,7 +1310,7 @@
                 "text_N6dhbQ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Real people making great products</p>",
+                    "text": "<p>For special moments and every day.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1461,7 +1461,7 @@
                 "text_cx6iqh": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Everything we do starts with why</p>",
+                    "text": "<p>Every piece finished with care.</p><p></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
