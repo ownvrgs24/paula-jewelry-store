@@ -881,7 +881,7 @@
         ],
         "layout": "spotlight",
         "section_width": "page-width",
-        "alignment": "center",
+        "alignment": "right",
         "image_position": "right",
         "background_color": "",
         "padding-block-start": 40,
