@@ -467,7 +467,7 @@
         "border_color": "",
         "border_radius": 0,
         "padding-block-start": 0,
-        "padding-block-end": 48
+        "padding-block-end": 52
       }
     },
     "hero_zTqaKn": {
@@ -517,16 +517,36 @@
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 32,
+            "padding-block-end": 24,
             "padding-inline-start": 0,
             "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_Jbi6p4": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Discover Our Story",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
           },
           "blocks": {}
         }
       },
       "block_order": [
         "text_yPhQiK",
-        "text_9N6npw"
+        "text_9N6npw",
+        "button_Jbi6p4"
       ],
       "name": "t:names.hero",
       "settings": {
