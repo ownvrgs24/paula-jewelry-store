@@ -197,7 +197,7 @@
                 "accordion_icon": "caret",
                 "accordion_dividers": false,
                 "background_color": "",
-                "text_color": "",
+                "text_color": "{{ settings.color_palette.foreground }}",
                 "heading_preset": "h5",
                 "link_preset": "paragraph",
                 "padding-block-start": 0,
