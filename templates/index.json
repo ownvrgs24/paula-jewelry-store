@@ -849,8 +849,8 @@
               "name": "t:names.title",
               "static": true,
               "settings": {
-                "font": "var(--font-subheading--family)",
-                "weight": "",
+                "font": "var(--font-body--family)",
+                "weight": "100",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none"
