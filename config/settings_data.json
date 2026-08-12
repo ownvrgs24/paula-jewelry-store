@@ -109,15 +109,18 @@
     "variant_button_width": "equal-width-buttons",
     "content_for_index": [],
     "color_palette": {
-      "background": "#FFFFFF",
-      "foreground": "#1C1C1C",
-      "color1": "#1C1C1C",
-      "color2": "#CFCFCF",
+      "background": "#ffffff",
+      "foreground": "#1c1c1c",
+      "color1": "#1c1c1c",
+      "color2": "#cfcfcf",
       "color3": "#000000",
       "color4": "#000000",
-      "color5": "#EFEFEF",
-      "color6": "#1C1C1C",
-      "color7": "#FFFFFF"
+      "color5": "#efefef",
+      "color6": "#1c1c1c",
+      "color7": "#ffffff",
+      "color8": "#ae6047",
+      "color9": "#ec72e7",
+      "color10": "#333598"
     }
   },
   "presets": {
