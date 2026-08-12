@@ -56,7 +56,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>{{ closest.page.content }}</p>",
+                "text": "{{ closest.page.content }}",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -204,7 +204,7 @@
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
-        "vertical_alignment": "center",
+        "vertical_alignment": "flex-end",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
