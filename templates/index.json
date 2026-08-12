@@ -572,7 +572,7 @@
         "section_height_custom": 50,
         "background_color": "",
         "toggle_overlay": true,
-        "overlay_color": "#0000002B",
+        "overlay_color": "#0000002b",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
@@ -1506,7 +1506,7 @@
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
