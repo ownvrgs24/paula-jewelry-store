@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "type": "header",
   "name": "t:names.header",
   "sections": {
@@ -16,12 +17,16 @@
         "announcement_info": {
           "type": "_announcement",
           "settings": {
-            "text": "Serving San Diego County  •  <a href=\"https:\/\/www.etsy.com\/shop\/ProJewelerDesigns?ref=shop_sugg_market\">Click To Shop Our Etsy Jewelry Store Now!<\/a>  •  Highest Quality Service  •  Escondido: 760.705.9908  •  El Cajon: 619.402.1825",
+            "text": "Serving San Diego County  •  <a href=\"https://www.etsy.com/shop/ProJewelerDesigns?ref=shop_sugg_market\">Click To Shop Our Etsy Jewelry Store Now!</a>  •  Highest Quality Service  •  Escondido: 760.705.9908  •  El Cajon: 619.402.1825",
+            "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
+            "weight": "",
             "letter_spacing": "normal",
-            "case": "none"
-          }
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -71,7 +76,7 @@
             "text_color_navigation_bar": "",
             "drawer_accordion": false,
             "drawer_accordion_expand_first": false,
-            "drawer_dividers": false
+            "drawer_dividers": true
           },
           "blocks": {}
         }
