@@ -1565,46 +1565,6 @@
     },
     "17865465985666a303": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_c2754fc_Fkhj8z": {
-          "type": "ai_gen_block_c2754fc",
-          "settings": {
-            "background_color": "#ffffff",
-            "text_color": "#1c1c1c",
-            "heading": "Get in Touch",
-            "heading_size": 32,
-            "subheading": "We'd love to hear from you",
-            "subheading_size": 18,
-            "body_text": "<p>Have questions about our products or services? Our team is here to help. Fill out the form and we'll get back to you as soon as possible.</p>",
-            "body_size": 14,
-            "services_list": "Custom jewelry design|Watch repair services|Appraisals and valuations|Gift wrapping available",
-            "image_border_radius": 0,
-            "form_background_color": "#f9f9f9",
-            "form_text_color": "#1c1c1c",
-            "form_padding": 32,
-            "form_border_radius": 0,
-            "form_border_color": "#cfcfcf",
-            "form_border_width": 1,
-            "form_input_background": "#ffffff",
-            "form_input_border_color": "#cfcfcf",
-            "form_input_focus_color": "#1c1c1c",
-            "form_input_border_radius": 0,
-            "button_text": "Send Message",
-            "button_background": "#1c1c1c",
-            "button_text_color": "#ffffff",
-            "button_hover_background": "#000000",
-            "button_hover_text_color": "#ffffff",
-            "button_border_color": "#1c1c1c",
-            "button_border_width": 1,
-            "button_border_radius": 0,
-            "success_message": "Thank you for contacting us! We'll get back to you soon."
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_c2754fc_Fkhj8z"
-      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
