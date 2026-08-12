@@ -192,7 +192,7 @@
               "settings": {
                 "menu": "footer-list-category",
                 "heading": "Shop",
-                "menu_spacing": 10,
+                "menu_spacing": 12,
                 "show_as_accordion": false,
                 "accordion_icon": "caret",
                 "accordion_dividers": false,
