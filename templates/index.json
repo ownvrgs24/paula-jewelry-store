@@ -873,7 +873,9 @@
       },
       "name": "t:names.collection_links_spotlight",
       "settings": {
-        "collection_list": [],
+        "collection_list": [
+          "earrings"
+        ],
         "layout": "spotlight",
         "section_width": "page-width",
         "alignment": "center",
