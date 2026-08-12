@@ -411,6 +411,15 @@
     "section_mV3WNP": {
       "type": "section",
       "blocks": {
+        "footer_policy_list_VCdnpa": {
+          "type": "footer-policy-list",
+          "settings": {
+            "text_color": "",
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "footer_copyright_jweRK8": {
           "type": "footer-copyright",
           "settings": {
@@ -420,20 +429,11 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "footer_policy_list_VCdnpa": {
-          "type": "footer-policy-list",
-          "settings": {
-            "text_color": "",
-            "font_size": "0.75rem",
-            "case": "none"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "footer_copyright_jweRK8",
-        "footer_policy_list_VCdnpa"
+        "footer_policy_list_VCdnpa",
+        "footer_copyright_jweRK8"
       ],
       "name": "t:names.custom_section",
       "settings": {
