@@ -375,18 +375,7 @@
         "divider_thickness": 1,
         "divider_color": "{{ settings.color_palette.color2 }}",
         "padding-block-start": 20,
-        "padding-block-end": 48
-      }
-    },
-    "footer_m9NzUG": {
-      "type": "footer",
-      "name": "t:names.footer",
-      "settings": {
-        "section_width": "page-width",
-        "gap": 20,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 30,
-        "padding-block-end": 30
+        "padding-block-end": 20
       }
     },
     "newsletter_popup": {
@@ -404,7 +393,6 @@
   "order": [
     "section_jaeba3",
     "footer_utilities_jLGE8U",
-    "footer_m9NzUG",
     "newsletter_popup"
   ]
 }
