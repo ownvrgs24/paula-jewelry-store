@@ -187,10 +187,16 @@
       ],
       "name": "t:names.custom_section",
       "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
         "gap": 24,
+        "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "divider_thickness": 1,
-        "divider_color": "{{ settings.color_palette.color2 }}",
         "padding-block-start": 20,
         "padding-block-end": 48
       }
