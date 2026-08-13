@@ -25,7 +25,7 @@
             "custom_width_mobile": 32,
             "height": "fit",
             "border": "solid",
-            "border_width": 3,
+            "border_width": 4,
             "border_opacity": 100,
             "border_color": "",
             "border_radius": 30,
