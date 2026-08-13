@@ -12,6 +12,30 @@
     "section_F8K44k": {
       "type": "section",
       "blocks": {
+        "image_6hxAaF": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_46ozjl46ozjl46oz.jpg",
+            "link": "",
+            "image_ratio": "portrait",
+            "width": "custom",
+            "custom_width": 30,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 32,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "group_Bpn6Pe": {
           "type": "group",
           "name": "t:names.column",
@@ -56,7 +80,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>{{ closest.page.content }}</p>",
+                "text": "{{ closest.page.content }}",
                 "width": "fit-content",
                 "max_width": "none",
                 "alignment": "left",
@@ -196,6 +220,7 @@
         }
       },
       "block_order": [
+        "image_6hxAaF",
         "group_Bpn6Pe",
         "group_Babct6"
       ],
