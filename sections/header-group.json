@@ -17,13 +17,13 @@
         "announcement_info": {
           "type": "_announcement",
           "settings": {
-            "text": "Serving San Diego County  •  <a href=\"https://www.etsy.com/shop/ProJewelerDesigns?ref=shop_sugg_market\">Click To Shop Our Etsy Jewelry Store Now!</a>  •  Highest Quality Service  •  Escondido: 760.705.9908  •  El Cajon: 619.402.1825",
+            "text": "Fast Shipping all over the US  •  Premium Jewelry & Watch Expertise  •  Expert Services & Support",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "weight": "700",
             "letter_spacing": "normal",
-            "case": "none",
+            "case": "uppercase",
             "text_color": ""
           },
           "blocks": {}
