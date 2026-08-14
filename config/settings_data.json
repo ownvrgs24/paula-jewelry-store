@@ -9,8 +9,10 @@
  */
 {
   "current": {
+    "logo": "{{ shop.brand.cover_image }}",
     "logo_height": 36,
     "logo_height_mobile": 28,
+    "favicon": "shopify://shop_images/Logo_Design.png",
     "page_text_color": "{{ settings.color_palette.foreground }}",
     "type_body_font": "nunito_n4",
     "type_subheading_font": "nunito_n6",
