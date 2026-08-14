@@ -9,17 +9,27 @@ var(--font-
 {{- settings.type_font_primary_link -}}
 --style); --menu-parent-font-weight: var(--font-
 {{- settings.type_font_primary_link -}}
---weight); --menu-parent-font-case:
-{% if settings.type_case_primary_link == 'uppercase' %}uppercase{% else %}none{% endif %};
+--weight);
+{%- comment -%}
+  Column headings echo the navbar's Text case so the two tiers read as one typographic system,
+  with slightly tighter tracking than the 0.18em navbar to suit the shorter labels. Child links
+  stay as typed either way: repeating caps a third level down flattens the hierarchy and costs
+  legibility on the longer labels.
+{%- endcomment -%}
+{%- if settings.type_case_primary_link == 'uppercase' -%}
+  --menu-parent-font-case: uppercase; --menu-parent-letter-spacing: 0.12em;
+{%- else -%}
+  --menu-parent-font-case: none; --menu-parent-letter-spacing: normal;
+{%- endif -%}
 {% case settings.menu_font_style %}
   {% when 'regular' %}
     --menu-parent-font-size: var(--menu-font-md--size); --menu-parent-font-line-height:
     var(--menu-font-md--line-height); --menu-parent-font-color: var(--color-foreground);
     --menu-parent-active-font-color: var(--color-foreground-subdued);
   {% when 'inverse' %}
-    --menu-parent-font-size: var(--menu-font-sm--size); --menu-parent-font-line-height:
-    var(--menu-font-sm--line-height); --menu-parent-font-color: var(--color-foreground-subdued);
-    --menu-parent-active-font-color: var(--color-foreground);
+    --menu-parent-font-size: var(--menu-font-2xs--size); --menu-parent-font-line-height:
+    var(--menu-font-2xs--line-height); --menu-parent-font-color: var(--color-foreground);
+    --menu-parent-active-font-color: var(--color-foreground-subdued);
   {% when 'inverse_large' %}
     --menu-parent-font-size: var(--menu-font-sm--size); --menu-parent-font-line-height:
     var(--menu-font-sm--line-height); --menu-parent-font-color: var(--color-foreground-subdued);
@@ -29,15 +39,14 @@ var(--font-
 {{- settings.type_font_primary_link -}}
 --style); --menu-child-font-weight: var(--font-
 {{- settings.type_font_primary_link -}}
---weight); --menu-child-font-case:
-{% if settings.type_case_primary_link == 'uppercase' %}uppercase{% else %}none{% endif %};
+--weight); --menu-child-font-case: none;
 {% case settings.menu_font_style %}
   {% when 'regular' %}
     --menu-child-font-size: var(--menu-font-sm--size); --menu-child-font-line-height: var(--menu-font-sm--line-height);
     --menu-child-font-color: var(--color-foreground-subdued); --menu-child-active-font-color: var(--color-foreground);
   {% when 'inverse' %}
-    --menu-child-font-size: var(--menu-font-md--size); --menu-child-font-line-height: var(--menu-font-md--line-height);
-    --menu-child-font-color: var(--color-foreground); --menu-child-active-font-color: var(--color-foreground-subdued);
+    --menu-child-font-size: var(--menu-font-sm--size); --menu-child-font-line-height: var(--menu-font-sm--line-height);
+    --menu-child-font-color: var(--color-foreground-muted); --menu-child-active-font-color: var(--color-foreground);
   {% when 'inverse_large' %}
     --menu-child-font-size: var(--menu-font-xl--size); --menu-child-font-line-height: var(--menu-font-xl--line-height);
     --menu-child-font-color: var(--color-foreground); --menu-child-active-font-color: var(--color-foreground-subdued);
