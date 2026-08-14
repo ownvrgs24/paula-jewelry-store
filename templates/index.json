@@ -880,10 +880,8 @@
           "earrings",
           "necklaces",
           "pendants",
-          "rings",
-          "watch",
           "bracelets",
-          "pendants-necklaces",
+          "rings",
           "watches"
         ],
         "layout": "spotlight",
