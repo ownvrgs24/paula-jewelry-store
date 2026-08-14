@@ -881,7 +881,10 @@
           "necklaces",
           "pendants",
           "rings",
-          "watch"
+          "watch",
+          "bracelets",
+          "pendants-necklaces",
+          "watches"
         ],
         "layout": "spotlight",
         "section_width": "page-width",
