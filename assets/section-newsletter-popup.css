@@ -17,22 +17,16 @@
   visibility: visible;
 }
 
+/* .close-button in base.css supplies the touch target, icon size, hover and focus ring. */
 .newsletter-popup__close {
   position: absolute;
-  inset-block-start: 0.5rem;
-  inset-inline-end: 0.5rem;
-  display: flex;
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.newsletter-popup__close svg {
-  width: 0.75rem;
-  height: 0.75rem;
+  top: var(--margin-2xs);
+  right: var(--margin-2xs);
 }
 
 .newsletter-popup__heading {
   margin: 0;
+  padding-inline-end: var(--minimum-touch-target);
 }
 
 .newsletter-popup__body {
@@ -49,6 +43,14 @@
 
 .newsletter-popup__input {
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-input-text);
+  background-color: var(--color-input-background);
+  padding: var(--padding-lg) var(--padding-xl);
+  border-radius: var(--style-border-radius-inputs);
+  border: var(--style-border-width-inputs) solid var(--color-input-border);
+  -webkit-font-smoothing: antialiased;
 }
 
 .newsletter-popup__button {
