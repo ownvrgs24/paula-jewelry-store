@@ -206,7 +206,7 @@
         "section_width": "full-width",
         "section_height": "large",
         "section_height_custom": 50,
-        "background_color": "{{ settings.color_palette.foreground }}",
+        "background_color": "{{ settings.color_palette.background }}",
         "toggle_overlay": true,
         "overlay_color": "#1c1c1c8f",
         "overlay_style": "gradient",
