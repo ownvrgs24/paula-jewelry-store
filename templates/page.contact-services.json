@@ -121,7 +121,7 @@
             "gap": 8,
             "width": "fit-content",
             "custom_width": 100,
-            "width_mobile": "fill",
+            "width_mobile": "fit-content",
             "custom_width_mobile": 100,
             "height": "fit",
             "custom_height": 100,
@@ -177,8 +177,8 @@
             "contact_form_egNmEk": {
               "type": "contact-form",
               "settings": {
-                "width": "custom",
-                "custom_width": 85,
+                "width": "fit-content",
+                "custom_width": 100,
                 "width_mobile": "fit-content",
                 "custom_width_mobile": 100,
                 "background_color": "",
