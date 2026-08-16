@@ -75,39 +75,27 @@
     "form": {
       "type": "section",
       "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
+        "ghl_contact_form_UwiCkQ": {
+          "type": "ghl-contact-form",
           "settings": {
+            "form_url": "https://api.leadconnectorhq.com/widget/form/YOUR_FORM_ID",
+            "form_name": "Contact us",
+            "min_height": 600,
             "width": "custom",
             "custom_width": 50,
             "width_mobile": "custom",
             "custom_width_mobile": 100,
-            "input_style": "default",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
+          "blocks": {},
           "block_order": []
         }
       },
       "block_order": [
-        "contact_form_UwiCkQ"
+        "ghl_contact_form_UwiCkQ"
       ],
       "name": "t:names.contact_form",
       "settings": {
