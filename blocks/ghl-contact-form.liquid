@@ -1,0 +1,210 @@
+
+
+{% liquid
+  assign form_url = block.settings.form_url | strip
+  assign ghl_form_id = form_url | split: '?' | first | split: '/' | last
+%}
+
+<div
+  class="ghl-contact-form spacing-style size-style"
+  style="
+    {% render 'spacing-style', settings: block.settings %}
+    {% render 'size-style', settings: block.settings %}
+    --ghl-contact-form-min-height: {{ block.settings.min_height }}px;
+    {% if block.settings.background_color != blank %}background-color: {{ block.settings.background_color }};{% endif %}
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- if form_url != blank -%}
+    <iframe
+      class="ghl-contact-form__iframe"
+      src="{{ form_url }}"
+      id="inline-{{ ghl_form_id }}"
+      title="{{ block.settings.form_name | escape }}"
+      data-layout="{'id':'INLINE'}"
+      data-trigger-type="alwaysShow"
+      data-activation-type="alwaysActivated"
+      data-deactivation-type="neverDeactivate"
+      data-form-name="{{ block.settings.form_name | escape }}"
+      data-form-id="{{ ghl_form_id }}"
+      data-height="{{ block.settings.min_height }}"
+      data-layout-iframe-id="inline-{{ ghl_form_id }}"
+      scrolling="no"
+      loading="lazy"
+    ></iframe>
+
+    {%- comment -%}
+      GoHighLevel's resizer script. It is safe to output once per block: the browser
+      caches the file, and the script keys off each iframe's data-layout-iframe-id.
+    {%- endcomment -%}
+    <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+  {%- elsif request.design_mode -%}
+    <p class="ghl-contact-form__placeholder">
+      Add your GoHighLevel form URL in this block's settings to display the form.
+    </p>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .ghl-contact-form__iframe {
+    display: block;
+    width: 100%;
+    min-height: var(--ghl-contact-form-min-height, 600px);
+    border: none;
+    background-color: transparent;
+  }
+
+  .ghl-contact-form__placeholder {
+    padding: var(--padding-lg) var(--padding-xl);
+    border: 1px dashed var(--color-input-border);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "GoHighLevel form",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "form_url",
+      "label": "Form URL",
+      "default": "https://api.leadconnectorhq.com/widget/form/YOUR_FORM_ID",
+      "info": "In GoHighLevel, open Sites > Forms > Integrate and copy the address inside src=\"...\" from the embed code."
+    },
+    {
+      "type": "text",
+      "id": "form_name",
+      "label": "Form name",
+      "default": "Contact us",
+      "info": "Used by screen readers and by GoHighLevel reporting. It is not shown on the page."
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Starting height",
+      "min": 300,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 600,
+      "info": "The height before the form loads. GoHighLevel resizes the form to fit its own content once it appears, so this only prevents the page from jumping."
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:settings.width_desktop",
+      "options": [
+        {
+          "value": "fit-content",
+          "label": "t:options.fit_content"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
+        }
+      ],
+      "default": "fit-content"
+    },
+    {
+      "type": "range",
+      "id": "custom_width",
+      "label": "t:settings.width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.width == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "width_mobile",
+      "label": "t:settings.width_mobile",
+      "options": [
+        {
+          "value": "fit-content",
+          "label": "t:options.fit_content"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
+        }
+      ],
+      "default": "fit-content"
+    },
+    {
+      "type": "range",
+      "id": "custom_width_mobile",
+      "label": "t:settings.width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.width_mobile == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default",
+      "info": "Sits behind the form. Match it to the background you chose inside the GoHighLevel form builder."
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "GoHighLevel form",
+      "category": "t:categories.forms"
+    }
+  ]
+}
+{% endschema %}
