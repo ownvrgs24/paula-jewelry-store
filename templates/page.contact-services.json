@@ -177,9 +177,9 @@
             "ghl_contact_form_egNmEk": {
               "type": "ghl-contact-form",
               "settings": {
-                "form_url": "https://api.leadconnectorhq.com/widget/form/YOUR_FORM_ID",
-                "form_name": "Contact us",
-                "min_height": 600,
+                "form_url": "https://api.leadconnectorhq.com/widget/form/mw4q46EMht3eEFMHBVR5",
+                "form_name": "1. Contact Form",
+                "min_height": 940,
                 "width": "custom",
                 "custom_width": 100,
                 "width_mobile": "custom",
