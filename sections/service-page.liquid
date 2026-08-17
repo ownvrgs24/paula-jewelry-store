@@ -1,0 +1,263 @@
+{% comment %}
+  Reusable service page. All service-specific copy comes from the current page's
+  metafields in the "custom" namespace, so one template serves every service.
+{% endcomment %}
+
+{{ 'section-service-page.css' | asset_url | stylesheet_tag }}
+
+{%- assign newline = '
+' -%}
+
+{% liquid
+  assign mf = page.metafields.custom
+  assign service_title = mf.service_title.value | default: page.title
+  assign services = mf.services_included.value
+
+  unless mf.services_included.type contains 'list'
+    assign services = services | strip | split: newline
+  endunless
+
+  assign form_id = 'ServiceForm-' | append: section.id
+  assign email_consent_id = form_id | append: '-email-consent'
+  assign sms_consent_id = form_id | append: '-sms-consent'
+%}
+
+<div class="section page-width-normal">
+  <div
+    class="service-page spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    <div class="service-page__content">
+      {%- if mf.service_image.value != blank -%}
+        <div class="service-page__media">
+          {% render 'image',
+            image: mf.service_image.value,
+            height: 320,
+            class: 'service-page__image',
+            alt_text_fallback: service_title
+          %}
+        </div>
+      {%- endif -%}
+
+      <h1 class="service-page__title">{{ service_title }}</h1>
+
+      {%- if mf.service_subtitle.value != blank -%}
+        <p class="service-page__subtitle">{{ mf.service_subtitle.value }}</p>
+      {%- endif -%}
+
+      {%- if mf.service_description != blank -%}
+        <div class="service-page__rte">{{ mf.service_description | metafield_tag }}</div>
+      {%- endif -%}
+
+      {%- if services.size > 0 -%}
+        <h2 class="service-page__heading">{{ section.settings.services_heading }}</h2>
+        <ul class="service-page__services">
+          {%- for service in services -%}
+            {%- if service != blank -%}
+              <li>{{ service | strip }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if mf.secondary_heading.value != blank -%}
+        <h2 class="service-page__heading">{{ mf.secondary_heading.value }}</h2>
+      {%- endif -%}
+
+      {%- if mf.secondary_description != blank -%}
+        <div class="service-page__rte">{{ mf.secondary_description | metafield_tag }}</div>
+      {%- endif -%}
+
+      {%- if mf.closing_text != blank -%}
+        <div class="service-page__rte service-page__closing">{{ mf.closing_text | metafield_tag }}</div>
+      {%- endif -%}
+    </div>
+
+    <aside class="service-page__aside">
+      <h2 class="service-page__form-title">{{ section.settings.form_heading }}</h2>
+
+      {%- if section.settings.form_text != blank -%}
+        <p class="service-page__form-text">{{ section.settings.form_text }}</p>
+      {%- endif -%}
+
+      {%- form 'contact', id: form_id, class: 'service-form' -%}
+        <input type="hidden" name="contact[id]" value="{{ form_id }}">
+
+        {%- if form.posted_successfully? -%}
+          <p class="service-form__message" tabindex="-1" autofocus>
+            {{- 'blocks.contact_form.post_success' | t -}}
+          </p>
+        {%- elsif form.errors -%}
+          <p class="service-form__message service-form__message--error" tabindex="-1" autofocus>
+            {{- form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email -}}
+          </p>
+        {%- endif -%}
+
+        <div class="service-form__field">
+          <label for="{{ form_id }}-name">Full name</label>
+          <input
+            type="text"
+            id="{{ form_id }}-name"
+            name="contact[name]"
+            autocomplete="name"
+            value="{{ form.name | default: customer.name }}"
+            required
+          >
+        </div>
+
+        <div class="service-form__field">
+          <label for="{{ form_id }}-email">Email</label>
+          <input
+            type="email"
+            id="{{ form_id }}-email"
+            name="contact[email]"
+            autocomplete="email"
+            spellcheck="false"
+            autocapitalize="off"
+            value="{{ form.email | default: customer.email }}"
+            required
+            aria-required="true"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+            {% endif %}
+          >
+        </div>
+
+        <div class="service-form__field">
+          <label for="{{ form_id }}-phone">Phone</label>
+          <input
+            type="tel"
+            id="{{ form_id }}-phone"
+            name="contact[phone]"
+            autocomplete="tel"
+            value="{{ form.phone | default: customer.phone }}"
+          >
+        </div>
+
+        <div class="service-form__field">
+          <label for="{{ form_id }}-service">Service</label>
+          <input
+            type="text"
+            id="{{ form_id }}-service"
+            name="contact[Service]"
+            value="{{ service_title | escape }}"
+            readonly
+          >
+        </div>
+
+        <div class="service-form__field">
+          <label for="{{ form_id }}-body">Message</label>
+          <textarea
+            id="{{ form_id }}-body"
+            name="contact[body]"
+            rows="5"
+          >{{ form.body }}</textarea>
+        </div>
+
+        <div class="service-form__consent">
+          {%- comment -%}
+            The hidden input records an explicit "No" when the box is left unchecked.
+          {%- endcomment -%}
+          <input type="hidden" name="contact[Email marketing consent]" value="No">
+          {% render 'checkbox',
+            id: email_consent_id,
+            name: 'contact[Email marketing consent]',
+            value: 'Yes',
+            label: section.settings.email_consent_label
+          %}
+
+          <input type="hidden" name="contact[SMS consent]" value="No">
+          {% render 'checkbox',
+            id: sms_consent_id,
+            name: 'contact[SMS consent]',
+            value: 'Yes',
+            label: section.settings.sms_consent_label
+          %}
+        </div>
+
+        <button type="submit" class="service-form__submit">{{ section.settings.submit_label }}</button>
+      {%- endform -%}
+    </aside>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Service page",
+  "class": "section-wrapper",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "services_heading",
+      "label": "Services list heading",
+      "default": "Services Included",
+      "info": "Sits above the list of services pulled from this page's \"Services included\" metafield."
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Contact Us Today"
+    },
+    {
+      "type": "text",
+      "id": "form_text",
+      "label": "Form intro text",
+      "default": "Tell us what you need and we'll reply within one business day.",
+      "info": "Leave empty to hide."
+    },
+    {
+      "type": "text",
+      "id": "email_consent_label",
+      "label": "Email consent label",
+      "default": "Yes, email me updates and offers.",
+      "info": "Shown next to the first consent checkbox. The answer is included in the contact email."
+    },
+    {
+      "type": "text",
+      "id": "sms_consent_label",
+      "label": "SMS consent label",
+      "default": "Yes, you may text me about this request.",
+      "info": "Shown next to the second consent checkbox. The answer is included in the contact email."
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Send Request"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service page"
+    }
+  ]
+}
+{% endschema %}

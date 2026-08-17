@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "service": {
+      "type": "service-page",
+      "settings": {
+        "services_heading": "Services Included",
+        "form_heading": "Contact Us Today",
+        "form_text": "Tell us what you need and we'll reply within one business day.",
+        "email_consent_label": "Yes, email me updates and offers.",
+        "sms_consent_label": "Yes, you may text me about this request.",
+        "submit_label": "Send Request",
+        "padding-block-start": 48,
+        "padding-block-end": 72
+      }
+    }
+  },
+  "order": ["service"]
+}
