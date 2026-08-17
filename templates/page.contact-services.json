@@ -16,9 +16,9 @@
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/Jeweler_setting_gemstone_in_work__202608172031.jpg",
+            "image": "shopify://shop_images/Engraver_engraving_gold_jewelry___202608172034.jpg",
             "link": "",
-            "image_ratio": "portrait",
+            "image_ratio": "landscape",
             "width": "custom",
             "custom_width": 25,
             "width_mobile": "fit-content",
