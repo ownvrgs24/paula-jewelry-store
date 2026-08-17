@@ -16,9 +16,9 @@
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "{{ closest.page.metafields.custom.service_image.value }}",
+            "image": "shopify://shop_images/Gemini_Generated_Image_mrvxxamrvxxamrvx.jpg",
             "link": "",
-            "image_ratio": "landscape",
+            "image_ratio": "portrait",
             "width": "custom",
             "custom_width": 25,
             "width_mobile": "fit-content",
