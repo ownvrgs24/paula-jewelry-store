@@ -18,8 +18,8 @@
           "settings": {
             "image": "{{ closest.page.metafields.custom.service_hero_image.value }}",
             "link": "",
-            "image_ratio": "portrait",
-            "width": "custom",
+            "image_ratio": "landscape",
+            "width": "fill",
             "custom_width": 25,
             "width_mobile": "fit-content",
             "custom_width_mobile": 32,
@@ -40,15 +40,15 @@
           "type": "group",
           "name": "t:names.column",
           "settings": {
-            "content_direction": "column",
+            "content_direction": "row",
             "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-start",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "flex-start",
             "gap": 8,
-            "width": "custom",
+            "width": "fill",
             "custom_width": 25,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
@@ -101,113 +101,113 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_jJhBbT"
-          ]
-        },
-        "group_Babct6": {
-          "type": "group",
-          "name": "t:names.column",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "flex-end",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image": "shopify://shop_images/f8af80b1-961f-4748-a080-c56752fa842f.jpg",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 3,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 5,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_apXLaq": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h3><strong>Contact Us Today</strong></h3>",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "h2",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             },
-            "ghl_contact_form_egNmEk": {
-              "type": "ghl-contact-form",
+            "group_JePJFg": {
+              "type": "group",
+              "name": "t:names.column",
               "settings": {
-                "form_url": "https://api.leadconnectorhq.com/widget/form/mw4q46EMht3eEFMHBVR5",
-                "form_name": "1. Contact Form",
-                "loading_text": "Loading the contact form",
-                "min_height": 940,
-                "width": "custom",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "center",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-end",
+                "gap": 8,
+                "width": "fill",
                 "custom_width": 100,
-                "width_mobile": "custom",
+                "width_mobile": "fill",
                 "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
                 "background_color": "",
+                "video_position": "cover",
+                "background_image": "shopify://shop_images/f8af80b1-961f-4748-a080-c56752fa842f.jpg",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 3,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
                 "padding-block-start": 0,
-                "padding-block-end": 0,
+                "padding-block-end": 5,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {}
+              "blocks": {
+                "text_apXLaq": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<h3><strong>Contact Us Today</strong></h3>",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "ghl_contact_form_egNmEk": {
+                  "type": "ghl-contact-form",
+                  "settings": {
+                    "form_url": "https://api.leadconnectorhq.com/widget/form/mw4q46EMht3eEFMHBVR5",
+                    "form_name": "1. Contact Form",
+                    "loading_text": "Loading the contact form",
+                    "min_height": 940,
+                    "width": "custom",
+                    "custom_width": 100,
+                    "width_mobile": "custom",
+                    "custom_width_mobile": 100,
+                    "background_color": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_apXLaq",
+                "ghl_contact_form_egNmEk"
+              ]
             }
           },
           "block_order": [
-            "text_apXLaq",
-            "ghl_contact_form_egNmEk"
+            "text_jJhBbT",
+            "group_JePJFg"
           ]
         }
       },
       "block_order": [
         "image_6hxAaF",
-        "group_Bpn6Pe",
-        "group_Babct6"
+        "group_Bpn6Pe"
       ],
       "name": "t:names.multicolumn",
       "settings": {
-        "content_direction": "row",
+        "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
         "vertical_alignment": "flex-start",
