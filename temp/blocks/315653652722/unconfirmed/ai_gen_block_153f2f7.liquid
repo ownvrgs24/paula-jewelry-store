@@ -1,6 +1,514 @@
+{% doc %}
+  @prompt
+    3 columns
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-three-column-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-three-column__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.column_gap }}px;
+    width: 100%;
+  }
+
+  .ai-three-column__column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_gap }}px;
+  }
+
+  .ai-three-column__image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-three-column__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-three-column__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: {{ block.settings.image_aspect_ratio }};
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-three-column__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-three-column__heading-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-three-column__text-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    text-align: {{ block.settings.text_alignment }};
+    line-height: 1.6;
+  }
+
+  .ai-three-column__button-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    {% if block.settings.text_alignment == 'center' %}
+      justify-content: center;
+    {% elsif block.settings.text_alignment == 'right' %}
+      justify-content: flex-end;
+    {% else %}
+      justify-content: flex-start;
+    {% endif %}
+  }
+
+  .ai-three-column__button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-size: {{ block.settings.button_text_size }}px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-three-column__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-three-column__container-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-three-column-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-three-column__container-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.column_gap_mobile }}px;
+    }
+
+    .ai-three-column__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-three-column__text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<three-column-layout-{{ ai_gen_id }} class="ai-three-column-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-three-column__container-{{ ai_gen_id }}">
+    {% for i in (1..3) %}
+      {% liquid
+        assign image_key = 'column_' | append: i | append: '_image'
+        assign heading_key = 'column_' | append: i | append: '_heading'
+        assign text_key = 'column_' | append: i | append: '_text'
+        assign button_text_key = 'column_' | append: i | append: '_button_text'
+        assign button_link_key = 'column_' | append: i | append: '_button_link'
+
+        assign column_image = block.settings[image_key]
+        assign column_heading = block.settings[heading_key]
+        assign column_text = block.settings[text_key]
+        assign column_button_text = block.settings[button_text_key]
+        assign column_button_link = block.settings[button_link_key]
+      %}
+
+      <div class="ai-three-column__column-{{ ai_gen_id }}">
+        {% if block.settings.show_images %}
+          <div class="ai-three-column__image-wrapper-{{ ai_gen_id }}">
+            {% if column_image %}
+              <img
+                src="{{ column_image | image_url: width: 800 }}"
+                alt="{{ column_image.alt | escape }}"
+                loading="lazy"
+                width="{{ column_image.width }}"
+                height="{{ column_image.height }}"
+                class="ai-three-column__image-{{ ai_gen_id }}"
+              >
+            {% else %}
+              <div class="ai-three-column__image-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if column_heading != blank %}
+          <h3 class="ai-three-column__heading-{{ ai_gen_id }}">{{ column_heading }}</h3>
+        {% endif %}
+
+        {% if column_text != blank %}
+          <div class="ai-three-column__text-{{ ai_gen_id }}">{{ column_text }}</div>
+        {% endif %}
+
+        {% if column_button_text != blank and column_button_link != blank %}
+          <div class="ai-three-column__button-wrapper-{{ ai_gen_id }}">
+            <a href="{{ column_button_link }}" class="ai-three-column__button-{{ ai_gen_id }}">
+              {{ column_button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</three-column-layout-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ThreeColumnLayout{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('three-column-layout-{{ ai_gen_id }}', ThreeColumnLayout{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Three column layout",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "label": "Column gap on mobile",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Content gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "label": "Columns on tablet",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_images",
+      "label": "Show images",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "4/3", "label": "Landscape (4:3)" },
+        { "value": "3/4", "label": "Portrait (3:4)" },
+        { "value": "16/9", "label": "Wide (16:9)" }
+      ],
+      "default": "4/3"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_1_heading",
+      "label": "Heading",
+      "default": "Column 1"
+    },
+    {
+      "type": "richtext",
+      "id": "column_1_text",
+      "label": "Text",
+      "default": "<p>Add descriptive text for this column.</p>"
+    },
+    {
+      "type": "text",
+      "id": "column_1_button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "column_1_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_2_heading",
+      "label": "Heading",
+      "default": "Column 2"
+    },
+    {
+      "type": "richtext",
+      "id": "column_2_text",
+      "label": "Text",
+      "default": "<p>Add descriptive text for this column.</p>"
+    },
+    {
+      "type": "text",
+      "id": "column_2_button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "column_2_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_3_heading",
+      "label": "Heading",
+      "default": "Column 3"
+    },
+    {
+      "type": "richtext",
+      "id": "column_3_text",
+      "label": "Text",
+      "default": "<p>Add descriptive text for this column.</p>"
+    },
+    {
+      "type": "text",
+      "id": "column_3_button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "column_3_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three column layout"
+    }
+  ]
+}
 {% endschema %}
