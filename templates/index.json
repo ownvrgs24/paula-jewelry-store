@@ -1601,20 +1601,6 @@
     },
     "178710305983d2683c": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_fc8776b_iDcKRn": {
-          "type": "ai_gen_block_fc8776b",
-          "settings": {
-            "desktop_width_percent": 100,
-            "image_fit": "cover",
-            "border_radius": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_fc8776b_iDcKRn"
-      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
