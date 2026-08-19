@@ -1,6 +1,165 @@
+{% doc %}
+  @prompt
+    Update the image block to dynamically pull an image from a page metafield (custom.service_hero_image), with a fallback to the static image setting if no metafield image is set.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% liquid
+  assign dynamic_image = page.metafields.custom.service_hero_image
+  if dynamic_image != blank
+    assign final_image = dynamic_image
+  else
+    assign final_image = block.settings.image
+  endif
+%}
+
+{% style %}
+  .ai-dynamic-image-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-dynamic-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-dynamic-image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: {{ block.settings.image_fit }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-dynamic-image-placeholder-{{ ai_gen_id }} {
+    background-color: #f4f4f4;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-dynamic-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .ai-dynamic-image-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-dynamic-image-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-dynamic-image-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-dynamic-image-wrapper-{{ ai_gen_id }}">
+    {% if final_image %}
+      <img
+        src="{{ final_image | image_url: width: 2000 }}"
+        alt="{{ final_image.alt | escape }}"
+        loading="lazy"
+        width="{{ final_image.width }}"
+        height="{{ final_image.height }}"
+      >
+    {% else %}
+      <div class="ai-dynamic-image-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+        <div class="ai-dynamic-image-empty-state-{{ ai_gen_id }}">
+          Add an image or connect a page metafield (custom.service_hero_image)
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Dynamic image",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image source"
+    },
+    {
+      "type": "paragraph",
+      "content": "This block will display the page metafield 'custom.service_hero_image' if set, otherwise it will use the static image below."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback image"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic image"
+    }
+  ]
+}
 {% endschema %}
