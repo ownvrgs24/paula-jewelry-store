@@ -123,80 +123,17 @@
     "main": {
       "type": "main-page",
       "blocks": {
-        "group_c3yphx": {
-          "type": "group",
-          "name": "t:names.group",
+        "custom_liquid_9pcM8W": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "custom_liquid": ""
           },
-          "blocks": {
-            "text_jxgxe3": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<h2>Jewelry Made to Last. Care You Can Trust.</h2><p>Jewelry is more than something you wear. It can mark a milestone, carry a memory, or become part of your everyday style. That's why we believe every piece deserves thoughtful care.</p><p>From jewelry repairs and resizing to cleaning, engraving, and restoration, our skilled team is here to help keep your favorite pieces looking beautiful and wearing well.</p><h3>What We Offer</h3><ul><li>Professional jewelry repairs</li><li>Ring sizing and adjustments</li><li>Jewelry cleaning and polishing</li><li>Stone setting and replacement</li><li>Engraving and personalization</li><li>Custom jewelry services</li><li>Watch repair and maintenance</li><li>Eyewear repair</li></ul><h3>Quality in Every Detail</h3><p>We take pride in careful workmanship, quality materials, and attention to detail. Whether you're purchasing a new piece or bringing in something you've treasured for years, we treat every item with the care it deserves.</p><p><strong>Have a piece that needs some attention? We'd love to help.</strong></p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_jxgxe3"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
-        "group_c3yphx"
+        "custom_liquid_9pcM8W"
       ],
       "settings": {
         "content_direction": "column",
