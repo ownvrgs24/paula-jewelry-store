@@ -15,7 +15,7 @@
         "text_FHFAXF": {
           "type": "text",
           "settings": {
-            "text": "<h2>New arrivals</h2>",
+            "text": "<h6>About Us</h6>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -40,7 +40,7 @@
         "text_eAcT6K": {
           "type": "text",
           "settings": {
-            "text": "<p>Made with care and unconditionally loved by our customers.</p>",
+            "text": "<p>Crafted with care. Trusted for generations.</p>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -66,7 +66,7 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Shop now",
+            "label": "Contact Us",
             "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button",
