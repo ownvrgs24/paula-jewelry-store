@@ -1,6 +1,127 @@
+{% doc %}
+  @prompt
+    Create a fluid container wrapper for the "Our Services" page template that: centers content horizontally (equivalent to Tailwind's mx-auto), uses responsive horizontal padding that scales with screen size (small padding on mobile, larger on tablet, generous on desktop), has a max-width to prevent content from stretching too wide on large screens, and applies consistent vertical spacing between sections. The container should wrap all existing page content and adapt fluidly across all breakpoints without fixed pixel widths.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-fluid-container-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: {{ block.settings.mobile_padding }}px;
+    padding-right: {{ block.settings.mobile_padding }}px;
+    padding-top: {{ block.settings.vertical_spacing }}px;
+    padding-bottom: {{ block.settings.vertical_spacing }}px;
+    max-width: {{ block.settings.max_width }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-fluid-container-{{ ai_gen_id }} {
+      padding-left: {{ block.settings.tablet_padding }}px;
+      padding-right: {{ block.settings.tablet_padding }}px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ai-fluid-container-{{ ai_gen_id }} {
+      padding-left: {{ block.settings.desktop_padding }}px;
+      padding-right: {{ block.settings.desktop_padding }}px;
+    }
+  }
+
+  .ai-fluid-container__content-{{ ai_gen_id }} {
+    width: 100%;
+  }
+{% endstyle %}
+
+<div class="ai-fluid-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-fluid-container__content-{{ ai_gen_id }}">
+    {{ block.settings.content }}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Fluid container",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Container width"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Horizontal padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding",
+      "label": "Mobile padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding",
+      "label": "Tablet padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding",
+      "label": "Desktop padding",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Vertical spacing"
+    },
+    {
+      "type": "range",
+      "id": "vertical_spacing",
+      "label": "Section spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "html",
+      "id": "content",
+      "label": "Container content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fluid container"
+    }
+  ]
+}
 {% endschema %}
