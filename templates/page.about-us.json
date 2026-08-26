@@ -127,7 +127,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Jewelry Made to Last.<br/>Care You Can Trust.</h2>",
+            "text": "<h3>What We Offer</h3>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -153,7 +153,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Jewelry is more than something you wear. It marks milestones, carries precious memories, and defines your everyday style. That’s why our skilled artisans are dedicated to keeping your most treasured pieces looking radiant and wearing beautifully for years to come.</p>",
+            "text": "<p>Expert services tailored to preserve and restore your fine jewelry & timepieces.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
