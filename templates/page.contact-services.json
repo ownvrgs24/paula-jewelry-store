@@ -11,6 +11,7 @@
   "sections": {
     "hero_N36LwK": {
       "type": "hero",
+      "disabled": true,
       "custom_css": [],
       "name": "t:names.hero",
       "settings": {
