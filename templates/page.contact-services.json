@@ -11,67 +11,11 @@
   "sections": {
     "hero_N36LwK": {
       "type": "hero",
-      "blocks": {
-        "text_EpLzAB": {
-          "type": "text",
-          "settings": {
-            "text": "<h5>{{ page.title }}</h5>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h1",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.foreground }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_mBRcqB": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>{{ page.metafields.custom.subtitle.value }}</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_EpLzAB",
-        "text_mBRcqB"
-      ],
+      "custom_css": [],
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "{{ page.metafields.custom.service_hero_image.value }}",
+        "image_1": "shopify://shop_images/cff79111-4e7c-4950-afe1-66e94f4890ae.png",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -88,11 +32,11 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "small",
+        "section_height": "medium",
         "section_height_custom": 50,
         "background_color": "",
-        "toggle_overlay": true,
-        "overlay_color": "#cfcfcfbf",
+        "toggle_overlay": false,
+        "overlay_color": "{{ settings.color_palette.color6 }}",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
