@@ -61,31 +61,11 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "button_W7hPPm": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Contact Us",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "text_FHFAXF",
-        "text_eAcT6K",
-        "button_W7hPPm"
+        "text_eAcT6K"
       ],
       "name": "t:names.hero",
       "settings": {
