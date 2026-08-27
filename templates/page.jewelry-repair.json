@@ -38,7 +38,7 @@
         "toggle_overlay": true,
         "overlay_color": "#1C1C1CBF",
         "overlay_style": "gradient",
-        "gradient_direction": "to top",
+        "gradient_direction": "to bottom",
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "padding-block-start": 40,
