@@ -287,6 +287,7 @@
   .menu-list {
     --menu-horizontal-gap: var(--gap-xl);
     --menu-vertical-gap: var(--gap-xl);
+    --menu-item-padding: var(--gap-lg);
 
     display: flex;
     height: 100%;
@@ -356,31 +357,29 @@
   .menu-list__trigger {
     position: relative;
     display: flex;
+    align-items: center;
     height: 100%;
   }
 
   .menu-list__disclosure {
-    position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: calc(100% - var(--gap-xs));
     width: max-content;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-inline: var(--padding-3xs);
-    padding-block: var(--padding-sm);
+    padding-inline-start: 4px;
+    padding-inline-end: 0;
+    /* Pull back over the title's trailing padding so the caret sits next to the
+       label instead of at the edge of the item. */
+    margin-inline-start: calc(-1 * var(--menu-item-padding));
     color: var(--menu-top-level-font-color);
     cursor: pointer;
-    opacity: 0;
-    transform: translateY(-50%);
     outline-offset: 0.1em;
 
-    /* Hidden control must not intercept pointer events; hover-open is driven by
-       the list item itself. */
+    /* Always visible, but hover-open is driven by the list item itself, so the
+       button must not intercept pointer events (it regains them on focus). */
     pointer-events: none;
 
     &:focus-visible {
-      opacity: 1;
       pointer-events: auto;
     }
   }
@@ -398,10 +397,10 @@
   }
 
   .menu-list__link-title {
-    --menu-underline-inset: var(--gap-sm);
+    --menu-underline-inset: var(--menu-item-padding);
 
     position: relative;
-    padding-inline: var(--gap-sm);
+    padding-inline: var(--menu-item-padding);
   }
   [slot='overflow'] .menu-list__link-title {
     --menu-underline-inset: 0px;
@@ -586,6 +585,7 @@
       position: static;
       flex-shrink: 0;
       transform: none;
+      margin-inline-start: 1px; /* visually aligns the chevron with the link text, which is slightly off due to the font metrics */
     }
 
     /* Point the chevron toward the content that opens to the right. */
