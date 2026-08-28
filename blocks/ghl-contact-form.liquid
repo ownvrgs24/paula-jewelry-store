@@ -21,10 +21,17 @@
       It mirrors the shape of a form so the page does not reflow when the real one arrives.
     {%- endcomment -%}
     <div class="ghl-contact-form__loader" aria-hidden="true">
-      <span class="ghl-contact-form__skeleton"></span>
+      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--heading"></span>
+      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--subheading"></span>
+      <div class="ghl-contact-form__loader-row">
+        <span class="ghl-contact-form__skeleton"></span>
+        <span class="ghl-contact-form__skeleton"></span>
+      </div>
       <span class="ghl-contact-form__skeleton"></span>
       <span class="ghl-contact-form__skeleton"></span>
       <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--message"></span>
+      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--consent"></span>
+      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--consent"></span>
       <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--button"></span>
     </div>
 
@@ -92,47 +99,61 @@
     gap: var(--gap-md);
     padding: var(--padding-xl);
     border-radius: 8px;
+    transition: opacity var(--animation-speed-slow, 0.25s) var(--animation-easing, ease-in-out),
+      visibility var(--animation-speed-slow, 0.25s);
   }
 
   .ghl-contact-form[data-loaded='true'] .ghl-contact-form__loader {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Name and email sit side by side in the form, and stack on narrow screens. */
+  .ghl-contact-form__loader-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-md);
+  }
+
+  .ghl-contact-form__loader-row .ghl-contact-form__skeleton {
+    flex: 1 1 12rem;
   }
 
   .ghl-contact-form__skeleton {
     display: block;
-    height: 3rem;
+    height: 3.25rem;
     border-radius: 4px;
     background-color: rgb(var(--color-foreground-rgb) / var(--opacity-10));
   }
 
+  .ghl-contact-form__skeleton--heading {
+    width: 60%;
+    height: 1.5rem;
+  }
+
+  .ghl-contact-form__skeleton--subheading {
+    width: 80%;
+    height: 1rem;
+    margin-block-end: var(--gap-md);
+  }
+
   .ghl-contact-form__skeleton--message {
     flex: 1;
-    min-height: 6rem;
+    min-height: 10rem;
+  }
+
+  .ghl-contact-form__skeleton--consent {
+    height: 2.25rem;
   }
 
   .ghl-contact-form__skeleton--button {
-    width: 40%;
+    height: 3.5rem;
+    margin-block-start: var(--gap-md);
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .ghl-contact-form__skeleton {
       animation: ghl-contact-form-pulse 1.4s ease-in-out infinite;
-    }
-
-    .ghl-contact-form__skeleton:nth-child(2) {
-      animation-delay: 0.1s;
-    }
-
-    .ghl-contact-form__skeleton:nth-child(3) {
-      animation-delay: 0.2s;
-    }
-
-    .ghl-contact-form__skeleton:nth-child(4) {
-      animation-delay: 0.3s;
-    }
-
-    .ghl-contact-form__skeleton:nth-child(5) {
-      animation-delay: 0.4s;
     }
   }
 
@@ -158,6 +179,13 @@
     /* Longest the placeholder is allowed to stay up if the iframe never reports back. */
     static FALLBACK_TIMEOUT = 8000;
 
+    /*
+     * The iframe often reports back within a couple of hundred milliseconds, which is
+     * long enough to notice a gap but too short to read as loading. Holding the
+     * placeholder for a beat makes it a state rather than a flicker.
+     */
+    static MIN_VISIBLE = 600;
+
     connectedCallback() {
       const iframe = this.querySelector('.ghl-contact-form__iframe');
 
@@ -165,6 +193,8 @@
 
       this.markLoaded = this.markLoaded.bind(this);
       this.handleMessage = this.handleMessage.bind(this);
+      this.reveal = this.reveal.bind(this);
+      this.startedAt = Date.now();
 
       try {
         this.formOrigin = new URL(iframe.src).origin;
@@ -186,6 +216,7 @@
 
     disconnectedCallback() {
       this.clearWatchers();
+      clearTimeout(this.revealTimeout);
     }
 
     /* Other embeds and apps post to this window too, so only trust the form's own origin. */
@@ -196,7 +227,21 @@
     }
 
     markLoaded() {
+      if (this.revealing) return;
+      this.revealing = true;
       this.clearWatchers();
+
+      const remaining = GhlContactFormComponent.MIN_VISIBLE - (Date.now() - this.startedAt);
+
+      if (remaining > 0) {
+        this.revealTimeout = setTimeout(this.reveal, remaining);
+        return;
+      }
+
+      this.reveal();
+    }
+
+    reveal() {
       this.dataset.loaded = 'true';
 
       const status = this.querySelector('.ghl-contact-form__status');
