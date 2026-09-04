@@ -14,6 +14,30 @@
     "section_jaeba3": {
       "type": "section",
       "blocks": {
+        "image_LCpFTt": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/VP_Luxe_Jewelers_Logo.webp",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "group_3cNBmR": {
           "type": "group",
           "name": "t:names.group",
@@ -373,6 +397,7 @@
         }
       },
       "block_order": [
+        "image_LCpFTt",
         "group_3cNBmR",
         "group_bAmBa3",
         "group_information",
@@ -423,7 +448,6 @@
         "footer_copyright_jweRK8": {
           "type": "footer-copyright",
           "settings": {
-            "show_powered_by": true,
             "text_color": "",
             "font_size": "0.75rem",
             "case": "none"
