@@ -181,6 +181,26 @@
                 "price_tVjtKg"
               ]
             },
+            "product_custom_property_YEPbyJ": {
+              "type": "product-custom-property",
+              "name": "t:names.product_custom_property",
+              "settings": {
+                "property_heading": "Ring Size(Men/Women)",
+                "property_description": "",
+                "property_key": "Special instructions",
+                "input_type": "text",
+                "max_length": 25,
+                "checkbox_label": "Include gift wrapping",
+                "required": true,
+                "placeholder": "Let us know the size you need!",
+                "placeholder_textarea": "Enter your special instructions",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "divider_VJhene": {
               "type": "_divider",
               "name": "t:names.divider",
@@ -305,6 +325,7 @@
           },
           "block_order": [
             "group_icgrde",
+            "product_custom_property_YEPbyJ",
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
