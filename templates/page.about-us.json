@@ -160,6 +160,7 @@
         "text_dxDJ48",
         "text_6MBPTM"
       ],
+      "disabled": true,
       "name": "t:names.rich_text_section",
       "settings": {
         "content_direction": "column",
