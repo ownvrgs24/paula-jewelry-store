@@ -23,6 +23,8 @@
   assign alt_text_fallback = 'accessibility.home_logo_alt' | t: store_name: shop.name
 %}
 
+{{ 'section-header-logo-font.css.liquid' | asset_url | stylesheet_tag }}
+
 {% comment %}
   Output all logo variants, use CSS to hide/show the appropriate one
   based on the .header[transparent] selector
@@ -52,7 +54,7 @@
   %}
 
   <span
-    class="header-logo__image-container header-logo__image-container--original"
+    class="header-logo__image-container header-logo__image-container--original{% if settings.logo == blank %} header-logo__image-container--text{% endif %}"
     data-testid="header-logo"
   >
     {% render 'image',
@@ -67,7 +69,7 @@
 
   {% if use_inverse_logo %}
     <span
-      class="header-logo__image-container header-logo__image-container--inverse"
+      class="header-logo__image-container header-logo__image-container--inverse{% if inverse_logo == blank %} header-logo__image-container--text{% endif %}"
       data-testid="header-logo-inverse"
     >
       {% render 'image',
