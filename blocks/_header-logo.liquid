@@ -23,7 +23,7 @@
   assign alt_text_fallback = 'accessibility.home_logo_alt' | t: store_name: shop.name
 %}
 
-{{ 'section-header-logo-font.css.liquid' | asset_url | stylesheet_tag }}
+{{ 'section-header-logo-font.css' | asset_url | stylesheet_tag }}
 
 {% comment %}
   Output all logo variants, use CSS to hide/show the appropriate one
@@ -38,9 +38,9 @@
   style="
     {% render 'size-style', settings: block_settings %}
     {% render 'spacing-style', settings: block_settings %}
-    --font-family: var(--font-body--family);
-    --font-style: var(--font-body--style);
-    --font-weight: 600;
+    --font-family: 'Linden Hill', Georgia, serif;
+    --font-style: italic;
+    --font-weight: 400;
   "
   {{ block.shopify_attributes }}
 >
