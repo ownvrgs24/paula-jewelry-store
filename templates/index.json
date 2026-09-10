@@ -158,8 +158,8 @@
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "rgba(0,0,0,0)",
-                "custom_button_text": "#F7F9FD",
-                "custom_button_border": "#F7F9FD",
+                "custom_button_text": "#f7f9fd",
+                "custom_button_border": "#f7f9fd",
                 "link_text_color": "",
                 "width": "fit-content",
                 "custom_width": 100,
@@ -411,7 +411,7 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 18,
-        "background_color": "#151515",
+        "background_color": "#f0f0f2",
         "padding-block-start": 48,
         "padding-block-end": 32
       }
@@ -731,7 +731,7 @@
           "static": true,
           "settings": {
             "product_card_gap": 4,
-            "background_color": "",
+            "background_color": "{{ settings.color_palette.foreground }}",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
@@ -775,7 +775,7 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
-                "text_color": "",
+                "text_color": "{{ settings.color_palette.color8 }}",
                 "padding-block-start": 12,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -797,7 +797,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "text_color": "{{ settings.color_palette.color4 }}",
+                "text_color": "{{ settings.color_palette.background }}",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -832,7 +832,7 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "background_color": "",
+        "background_color": "#f0f0f2",
         "padding-block-start": 48,
         "padding-block-end": 32
       }
@@ -888,7 +888,7 @@
         "section_width": "page-width",
         "alignment": "left",
         "image_position": "left",
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color5 }}",
         "padding-block-start": 40,
         "padding-block-end": 40
       }
