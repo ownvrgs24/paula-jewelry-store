@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Linden Hill';
+  src: url("{{ 'LindenHill-webfont.woff' | asset_url }}") format('woff'),
+    url("{{ 'LindenHill-webfont.ttf' | asset_url }}") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linden Hill';
+  src: url("{{ 'LindenHill-Italic-webfont.woff' | asset_url }}") format('woff'),
+    url("{{ 'LindenHill-Italic-webfont.ttf' | asset_url }}") format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+#header-component .header-logo .header-logo__image-container--text {
+  font-family: 'Linden Hill', Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
