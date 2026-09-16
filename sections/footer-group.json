@@ -447,9 +447,10 @@
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
-                "width": 24,
-                "link": "",
-                "open_in_new_tab": false,
+                "image_upload": "shopify://shop_images/tiktok-icon.png",
+                "width": 50,
+                "link": "https://www.tiktok.com/@vpluxe.jewelers",
+                "open_in_new_tab": true,
                 "icon_color": ""
               },
               "blocks": {}
