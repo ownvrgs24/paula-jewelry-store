@@ -368,7 +368,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<h3><strong>Expert Care. Quality Craftsmanship.</strong></h3><p>Professional jewelry, watch, and eyewear services, with attention to every detail.</p><p><strong>Jewelry Repair · Watch Repair · Eyewear Repair · Engraving</strong></p>",
+                "text": "<h3><strong>Expert Care. Quality Craftsmanship.</strong></h3><p>Professional jewelry, watch, and eyewear services, with attention to every detail.</p><p><strong>Jewelry Repair · Watch Repair  · Laser Engraving · Rhodium Plating</strong></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
