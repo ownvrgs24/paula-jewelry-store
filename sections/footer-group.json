@@ -389,10 +389,77 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "text_faHCFt": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><strong>Address:</strong>  <a href=\"https://www.google.com/maps/place/13315+Floral+Ave,+Poway,+CA+92064/@32.9564409,-117.0155891,17z/data=!3m1!4b1!4m6!3m5!1s0x80dbfb1e43b624a9:0x7c67f33db63aca25!8m2!3d32.9564364!4d-117.0130142!16s%2Fg%2F11c1fq70hl?entry=ttu&g_ep=EgoyMDI2MDkxMy4wIKXMDSoASAFQAw%3D%3D\" target=\"_blank\" title=\"https://www.google.com/maps/place/13315+Floral+Ave,+Poway,+CA+92064/@32.9564409,-117.0155891,17z/data=!3m1!4b1!4m6!3m5!1s0x80dbfb1e43b624a9:0x7c67f33db63aca25!8m2!3d32.9564364!4d-117.0130142!16s%2Fg%2F11c1fq70hl?entry=ttu&g_ep=EgoyMDI2MDkxMy4wIKXMDSoASAFQAw%3D%3D\">13315 Floral Avenue, Poway, CA 92064</a></p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "icon_DXDbqp": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/facebook-icon_2499f735-255f-442f-b06a-f8629a822f6e.png",
+                "width": 50,
+                "link": "https://www.facebook.com/profile.php?id=61594169951937",
+                "open_in_new_tab": true,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "icon_8pFKiT": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "width": 24,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "icon_kxYLqm": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "width": 24,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "text_6Qcyjy"
+            "text_6Qcyjy",
+            "text_faHCFt",
+            "icon_DXDbqp",
+            "icon_8pFKiT",
+            "icon_kxYLqm"
           ]
         }
       },
