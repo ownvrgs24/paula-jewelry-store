@@ -1521,7 +1521,7 @@
         "section_height": "custom",
         "section_height_custom": 0,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color5 }}",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1533,8 +1533,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 30,
+        "padding-block-end": 30
       }
     },
     "1786546314dfbafcf1": {
