@@ -16,7 +16,7 @@
           "type": "text",
           "name": "Eyebrow",
           "settings": {
-            "text": "<p>Jewelry & Watch Specialists</p>",
+            "text": "<p><strong>Jewelry & Watch Specialists</strong></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -42,7 +42,7 @@
           "type": "text",
           "name": "Heading",
           "settings": {
-            "text": "<p>Made to Last. Designed to Impress.</p>",
+            "text": "<p><em><strong>Made to Last. Designed to Impress.</strong></em></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -68,7 +68,7 @@
           "type": "text",
           "name": "Supporting text",
           "settings": {
-            "text": "<p>Timeless jewelry designed for every moment worth remembering.</p><p></p>",
+            "text": "<p><em><strong>Timeless jewelry designed for every moment worth remembering.</strong></em></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
