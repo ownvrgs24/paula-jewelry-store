@@ -258,7 +258,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h2>{{ closest.collection.title }}</h2>",
+                "text": "<h2><strong>{{ closest.collection.title }}</strong></h2>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -625,7 +625,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h2>{{ closest.collection.title }}</h2>",
+                "text": "<h2><strong>{{ closest.collection.title }}</strong></h2>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -677,7 +677,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Designed to make every moment unforgettable.</p><p></p>",
+                "text": "<p><strong>Designed to make every moment unforgettable.</strong></p><p></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
