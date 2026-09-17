@@ -462,7 +462,7 @@
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
-                "image_upload": "shopify://shop_images/facebook-icon_2499f735-255f-442f-b06a-f8629a822f6e.png",
+                "image_upload": "shopify://shop_images/icons8-fb-48.png",
                 "width": 50,
                 "link": "https://www.facebook.com/profile.php?id=61594169951937",
                 "open_in_new_tab": true,
@@ -475,7 +475,7 @@
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
-                "image_upload": "shopify://shop_images/instagram-icon.png",
+                "image_upload": "shopify://shop_images/icons8-ig-48.png",
                 "width": 50,
                 "link": "https://www.instagram.com/vpluxejewelers/",
                 "open_in_new_tab": true,
@@ -488,7 +488,7 @@
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
-                "image_upload": "shopify://shop_images/tiktok-icon.png",
+                "image_upload": "shopify://shop_images/icons8-tiktok-48.png",
                 "width": 50,
                 "link": "https://www.tiktok.com/@vpluxe.jewelers",
                 "open_in_new_tab": true,
