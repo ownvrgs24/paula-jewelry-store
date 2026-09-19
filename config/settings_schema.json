@@ -2229,6 +2229,17 @@
       },
       {
         "type": "header",
+        "content": "Site verification"
+      },
+      {
+        "type": "text",
+        "id": "seo_google_verification",
+        "label": "Google Search Console verification code",
+        "info": "In Search Console choose \"HTML tag\" as the verification method, then paste just the code from content=\"...\" here — not the whole tag. Shopify cannot serve Google's HTML *file* method, so this is the route that works. Once verified you can safely leave this in place.",
+        "default": ""
+      },
+      {
+        "type": "header",
         "content": "Indexing"
       },
       {
