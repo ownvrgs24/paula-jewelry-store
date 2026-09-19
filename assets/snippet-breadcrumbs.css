@@ -1,0 +1,72 @@
+/*
+ * Breadcrumb trail rendered by snippets/breadcrumbs.liquid.
+ *
+ * Sized and coloured entirely from theme tokens so the trail inherits the store's
+ * type and palette instead of introducing a look of its own. Tap targets meet the
+ * 44px minimum on touch devices via padding-block on the links.
+ */
+
+.breadcrumbs {
+  width: 100%;
+  max-width: var(--normal-content-width, 100%);
+  margin-inline: auto;
+  margin-block-end: var(--margin-md, 1rem);
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-2xs, 0.25rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-paragraph--family);
+  font-size: var(--font-size--body-sm, 0.8125rem);
+  line-height: var(--line-height--body-normal, 1.4);
+  color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text, 0.7));
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xs, 0.25rem);
+  min-width: 0;
+}
+
+.breadcrumbs__link,
+.breadcrumbs__current {
+  /* Vertical padding is what lifts the touch target to 44px without moving the row. */
+  display: inline-block;
+  padding-block: calc((44px - 1.4em) / 2);
+  overflow-wrap: anywhere;
+}
+
+.breadcrumbs__link {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgb(var(--color-foreground-rgb) / 0.35);
+  transition: text-decoration-color var(--animation-speed, 0.2s) var(--animation-easing, ease);
+}
+
+.breadcrumbs__link:hover {
+  text-decoration-color: currentcolor;
+}
+
+.breadcrumbs__current {
+  color: var(--color-foreground);
+}
+
+.breadcrumbs__separator {
+  color: rgb(var(--color-foreground-rgb) / 0.4);
+}
+
+@media screen and (pointer: fine) {
+  /* A mouse does not need the enlarged hit area, so the trail sits tighter. */
+  .breadcrumbs__link,
+  .breadcrumbs__current {
+    padding-block: 0;
+  }
+}

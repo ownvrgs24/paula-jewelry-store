@@ -1,0 +1,46 @@
+{%- doc -%}
+  Renders the visible breadcrumb trail. The trail itself comes from
+  `snippets/breadcrumb-trail.liquid`, which also feeds the BreadcrumbList JSON-LD, so
+  the links a visitor sees and the ones Google reads are always the same URLs.
+
+  Renders nothing on the home page, when the merchant has turned breadcrumbs off, or
+  when the trail would hold a single item.
+
+  @example
+  {% render 'breadcrumbs' %}
+{%- enddoc -%}
+
+{%- if settings.seo_breadcrumbs_enabled -%}
+  {%- capture breadcrumb_trail %}{% render 'breadcrumb-trail' %}{% endcapture -%}
+  {%- assign breadcrumb_items = breadcrumb_trail | strip | split: '|~|' -%}
+
+  {%- if breadcrumb_items.size > 1 -%}
+    {{ 'snippet-breadcrumbs.css' | asset_url | stylesheet_tag }}
+
+    <nav
+      class="breadcrumbs"
+      aria-label="{{ 'breadcrumbs.label' | t }}"
+    >
+      <ol class="breadcrumbs__list">
+        {%- for breadcrumb_item in breadcrumb_items -%}
+          {%- assign breadcrumb_parts = breadcrumb_item | split: '||' -%}
+          {%- assign breadcrumb_name = breadcrumb_parts[0] | strip -%}
+          {%- assign breadcrumb_url = breadcrumb_parts[1] | strip -%}
+
+          <li class="breadcrumbs__item">
+            {%- if forloop.last -%}
+              {%- comment -%}
+                The current page is plain text rather than a self-link, and carries
+                aria-current so assistive tech announces where the trail ends.
+              {%- endcomment -%}
+              <span class="breadcrumbs__current" aria-current="page">{{ breadcrumb_name }}</span>
+            {%- else -%}
+              <a class="breadcrumbs__link" href="{{ breadcrumb_url }}">{{ breadcrumb_name }}</a>
+              <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+    </nav>
+  {%- endif -%}
+{%- endif -%}

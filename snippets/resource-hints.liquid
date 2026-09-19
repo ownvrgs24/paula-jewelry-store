@@ -1,0 +1,30 @@
+{%- doc -%}
+  Opens connections to the third-party hosts this theme is guaranteed to hit, before the
+  markup that needs them is parsed.
+
+  The GoHighLevel chat bubble loads on every page from `snippets/chat-widget.liquid`, so
+  its host is always worth a preconnect: the handshake (DNS + TCP + TLS) is the expensive
+  part, and doing it early keeps it off the critical path.
+
+  The form hosts get a cheaper `dns-prefetch` instead. They are only needed on the
+  templates that embed a contact form, so resolving DNS ahead of time helps there without
+  spending a full connection on pages that never use them.
+
+  Rendered from `snippets/scripts.liquid`, which `layout/theme.liquid` renders in <head>.
+
+  @example
+  {% render 'resource-hints' %}
+{%- enddoc -%}
+
+{%- comment -%}
+  RemoteAsset is disabled below: it fires on any external host, but a connection hint is
+  not an asset. These hosts cannot be moved to Shopify's CDN — opening the connection
+  early is the whole point of the tags.
+{%- endcomment -%}
+{% # theme-check-disable RemoteAsset %}
+<link rel="preconnect" href="https://widgets.leadconnectorhq.com" crossorigin>
+<link rel="dns-prefetch" href="https://widgets.leadconnectorhq.com">
+
+<link rel="dns-prefetch" href="https://link.msgsndr.com">
+<link rel="dns-prefetch" href="https://api.leadconnectorhq.com">
+{% # theme-check-enable RemoteAsset %}

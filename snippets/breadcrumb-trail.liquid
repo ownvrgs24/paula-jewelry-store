@@ -1,0 +1,81 @@
+{%- doc -%}
+  Builds the breadcrumb trail for the current page as a flat, delimited string so a
+  single definition can feed both the visible trail (`snippets/breadcrumbs.liquid`)
+  and the BreadcrumbList JSON-LD (`snippets/structured-data.liquid`). Keeping one
+  source means the two can never disagree, which is what Google checks for.
+
+  Crumbs are separated by `|~|` and each crumb is `name||absolute url`. The last
+  crumb is the current page and its URL always matches the page's canonical URL.
+
+  Emits nothing on the home page, where a trail of one item has no value.
+
+  @example
+  {% capture trail %}{% render 'breadcrumb-trail' %}{% endcapture %}
+  {% assign crumbs = trail | strip | split: '|~|' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign origin = request.origin
+  assign crumbs = ''
+
+  case request.page_type
+    when 'index', 'password', 'gift_card'
+      assign crumbs = ''
+
+    when 'product'
+      comment
+        Prefer the collection the visitor actually came through. Falling back to the
+        product's first real collection keeps the trail populated on direct hits,
+        while skipping the catch-all collections that carry no navigational meaning.
+      endcomment
+      assign crumb_collection = collection
+
+      if crumb_collection == blank
+        for product_collection in product.collections
+          unless product_collection.handle == 'all' or product_collection.handle == 'frontpage'
+            assign crumb_collection = product_collection
+            break
+          endunless
+        endfor
+      endif
+
+      if crumb_collection != blank
+        assign crumbs = crumb_collection.title | append: '||' | append: origin | append: crumb_collection.url
+        assign crumbs = crumbs | append: '|~|'
+      endif
+
+      comment
+        The product crumb points at the bare /products/ URL rather than the
+        collection-scoped one, so it matches the canonical URL Shopify emits.
+      endcomment
+      assign crumbs = crumbs | append: product.title | append: '||' | append: origin | append: product.url
+
+    when 'collection'
+      assign crumbs = collection.title | append: '||' | append: origin | append: collection.url
+
+    when 'list-collections'
+      assign crumbs = 'content.search_results_resource_collections' | t | append: '||' | append: origin | append: routes.collections_url
+
+    when 'blog'
+      assign crumbs = blog.title | append: '||' | append: origin | append: blog.url
+
+    when 'article'
+      assign crumbs = blog.title | append: '||' | append: origin | append: blog.url
+      assign crumbs = crumbs | append: '|~|' | append: article.title | append: '||' | append: origin | append: article.url
+
+    when 'page'
+      assign crumbs = page.title | append: '||' | append: origin | append: page.url
+
+    when 'search'
+      assign crumbs = 'content.search' | t | append: '||' | append: origin | append: routes.search_url
+
+    when 'cart'
+      assign crumbs = 'accessibility.cart' | t | append: '||' | append: origin | append: routes.cart_url
+
+  endcase
+
+  if crumbs != blank
+    assign home_crumb = shop.name | append: '||' | append: origin | append: routes.root_url
+    echo home_crumb | append: '|~|' | append: crumbs
+  endif
+-%}

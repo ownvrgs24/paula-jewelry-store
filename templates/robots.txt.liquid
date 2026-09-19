@@ -1,0 +1,105 @@
+{% comment %}
+  robots.txt
+
+  Shopify's own default rules are emitted verbatim via `robots.default_groups`. They
+  already cover the paths that must never be crawled — /admin, /cart, /checkout,
+  /account, /orders, sorted collection URLs, theme-preview parameters — and they already
+  publish the sitemap. Rewriting those by hand is how stores accidentally deindex
+  themselves, so they are passed through untouched.
+
+  Three things are layered on top:
+
+    1. An explicit allow for the major AI and answer-engine crawlers. They are not
+       blocked by default, but stating it means a future change to Shopify's defaults
+       cannot quietly cut the store out of AI search results.
+    2. A pointer to llms.txt, for the assistants that look for one.
+    3. A crawl-delay for the bandwidth-heavy SEO-tool bots, which crawl aggressively
+       and return nothing.
+
+  Deliberately NOT blocked here: faceted collection URLs (`?filter.*`). Those are handled
+  with `noindex, follow` plus a canonical back to the clean collection in
+  `snippets/meta-tags.liquid`. Blocking them in robots.txt would stop Google reading that
+  noindex, so any already-indexed filter URLs could never drop out.
+{% endcomment %}
+{% for group in robots.default_groups %}
+  {{- group.user_agent }}
+
+  {% for rule in group.rules %}{{ rule }}
+  {% endfor %}
+
+  {%- if group.sitemap != blank %}
+    {{ group.sitemap }}
+  {% endif %}
+{% endfor %}
+
+# ---------------------------------------------------------------------------
+# AI and answer-engine crawlers
+#
+# These read pages to answer questions and cite sources. Allowing them is how the
+# store shows up in AI-assisted search.
+# ---------------------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Commercial SEO crawlers
+#
+# Throttled rather than blocked: they are useful when the store's own agency runs an
+# audit, but they crawl hard and send no traffic.
+# ---------------------------------------------------------------------------
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# A plain-language summary of this business for AI assistants.
+# llms.txt: {{ shop.url }}/pages/llms-txt

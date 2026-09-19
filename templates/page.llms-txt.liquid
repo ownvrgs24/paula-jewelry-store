@@ -1,0 +1,90 @@
+{% layout none %}
+{%- comment -%}
+  llms.txt — a plain-text brief for AI assistants and answer engines.
+
+  Follows the llmstxt.org shape: an H1 naming the entity, a blockquote summary, then
+  link sections. Assistants that fetch it get the store's structure and core facts in
+  one request instead of inferring them from rendered HTML.
+
+  `{% layout none %}` strips the theme chrome so the response body is the file itself.
+
+  Everything below is generated from live store data — store details, published
+  collections, pages, blogs and policies. Nothing is hard-coded and nothing is invented,
+  so the file cannot drift out of date as the catalogue changes. The only editorial text
+  comes from the page's own body content in the admin, which is appended at the end as
+  an "About" section if the merchant has written anything there.
+
+  SETUP (one-off, in the Shopify admin):
+    1. Online Store → Pages → Add page. Title "llms.txt", so the handle becomes
+       `llms-txt`. Leave the body empty, or write a short paragraph about the business.
+    2. Under Theme template, choose "llms-txt". Save.
+    3. Navigation → URL Redirects → Create: redirect `/llms.txt` to `/pages/llms-txt`.
+       Shopify serves theme files only from its own fixed paths, so this redirect is what
+       makes the conventional root URL resolve.
+{%- endcomment -%}
+{%- liquid
+  assign origin = request.origin
+  assign summary = shop.description | strip_html | strip_newlines | strip
+  if summary == blank
+    assign summary = shop.name
+  endif
+-%}
+# {{ shop.name }}
+
+> {{ summary }}
+
+Canonical site: {{ shop.url }}
+{% if shop.address.summary != blank %}Location: {{ shop.address.summary | strip_newlines | replace: '  ', ' ' | strip }}{% endif %}
+{% if shop.phone != blank %}Phone: {{ shop.phone }}{% endif %}
+{% if shop.email != blank %}Email: {{ shop.email }}{% endif %}
+Currency: {{ shop.currency }}
+Primary language: {{ request.locale.iso_code }}
+{% if settings.seo_opening_hours != blank %}
+Opening hours:
+{{ settings.seo_opening_hours | strip }}
+{% endif %}
+{% if settings.seo_service_areas != blank %}Areas served: {{ settings.seo_service_areas | strip }}{% endif %}
+
+## Shop the catalogue
+{% for linked_collection in collections %}{% unless linked_collection.handle == 'frontpage' %}
+- [{{ linked_collection.title | strip_html | strip }}]({{ origin }}{{ linked_collection.url }}){% if linked_collection.description != blank %}: {{ linked_collection.description | strip_html | strip_newlines | truncatewords: 25 }}{% endif %}{% endunless %}{% endfor %}
+
+## Pages
+{% for linked_page in pages %}{% unless linked_page.template_suffix == 'llms-txt' %}
+- [{{ linked_page.title | strip_html | strip }}]({{ origin }}{{ linked_page.url }}){% if linked_page.content != blank %}: {{ linked_page.content | strip_html | strip_newlines | truncatewords: 25 }}{% endif %}{% endunless %}{% endfor %}
+
+## Primary navigation
+{% for nav_link in linklists['main-menu'].links %}
+- [{{ nav_link.title | strip_html | strip }}]({{ origin }}{{ nav_link.url }}){% for nav_child in nav_link.links %}
+  - [{{ nav_child.title | strip_html | strip }}]({{ origin }}{{ nav_child.url }}){% endfor %}{% endfor %}
+{% for shop_blog in blogs %}
+## Blog: {{ shop_blog.title | strip_html | strip }}
+
+- [All posts]({{ origin }}{{ shop_blog.url }})
+{% for blog_article in shop_blog.articles limit: 50 %}
+- [{{ blog_article.title | strip_html | strip }}]({{ origin }}{{ blog_article.url }}): published {{ blog_article.published_at | date: '%Y-%m-%d' }}{% if blog_article.excerpt_or_content != blank %}. {{ blog_article.excerpt_or_content | strip_html | strip_newlines | truncatewords: 25 }}{% endif %}{% endfor %}
+{% endfor %}
+
+## Policies
+{% for shop_policy in shop.policies %}{% if shop_policy != blank %}
+- [{{ shop_policy.title | strip_html | strip }}]({{ origin }}{{ shop_policy.url }}){% endif %}{% endfor %}
+
+## Machine-readable resources
+
+- [Sitemap]({{ shop.url }}/sitemap.xml): every canonical, indexable URL on this site
+- [robots.txt]({{ shop.url }}/robots.txt): crawl rules
+- Structured data: schema.org JSON-LD is embedded in every page, with the business, the site and each page connected by stable `@id` references
+
+## Search this site
+
+- Search URL template: {{ shop.url }}{{ routes.search_url }}?q={query}
+{% if page.content != blank %}
+## About {{ shop.name }}
+
+{{ page.content | strip_html | strip }}
+{% endif %}
+## Notes for assistants
+
+- Prices, availability and product specifics change; read them from the product page or the sitemap rather than from any cached copy of this file.
+- This file lists what the store publishes about itself. It makes no claims about awards, ratings or reviews.
+- Preferred name for this business in citations: {{ shop.name }}.

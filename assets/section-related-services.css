@@ -1,0 +1,91 @@
+/*
+ * Related services link block — sections/related-services.liquid
+ *
+ * Built from theme tokens so it inherits the store's palette and type rather than
+ * introducing a look of its own. The grid is mobile-first: one column, widening only
+ * where there is room, so nothing overflows on a narrow viewport.
+ */
+
+.related-services {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm, 0.75rem);
+  color: var(--color-foreground);
+  font-family: var(--font-body--family);
+}
+
+.related-services__heading {
+  margin: 0;
+}
+
+.related-services__intro {
+  margin: 0;
+  max-width: 60ch;
+  color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text, 0.7));
+}
+
+.related-services__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-sm, 0.75rem);
+  margin: var(--margin-sm, 0.75rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (min-width: 600px) {
+  .related-services__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .related-services__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.related-services__item {
+  display: flex;
+  min-width: 0;
+}
+
+.related-services__link {
+  /* The whole card is the tap target, comfortably past the 44px minimum. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xs, 0.25rem);
+  width: 100%;
+  padding: var(--padding-md, 1rem);
+  color: inherit;
+  text-decoration: none;
+  background-color: rgb(var(--color-foreground-rgb) / 0.03);
+  border: var(--style-border-width, 1px) solid rgb(var(--color-foreground-rgb) / 0.14);
+  border-radius: var(--style-border-radius-cards, 0);
+  transition: border-color var(--animation-speed, 0.2s) var(--animation-easing, ease),
+    background-color var(--animation-speed, 0.2s) var(--animation-easing, ease);
+}
+
+.related-services__link:hover,
+.related-services__link:focus-visible {
+  background-color: rgb(var(--color-foreground-rgb) / 0.06);
+  border-color: rgb(var(--color-foreground-rgb) / 0.4);
+}
+
+.related-services__link-title {
+  font-family: var(--font-subheading--family);
+  font-weight: var(--font-subheading--weight);
+  /* overflow-wrap keeps a long service name inside its card instead of widening the page. */
+  overflow-wrap: anywhere;
+}
+
+.related-services__link-text {
+  font-size: var(--font-size--body-sm, 0.8125rem);
+  line-height: var(--line-height--body-normal, 1.4);
+  color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text, 0.7));
+}
+
+.related-services__placeholder {
+  margin: 0;
+  color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text, 0.7));
+}
