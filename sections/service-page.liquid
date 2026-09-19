@@ -23,6 +23,8 @@
 %}
 
 <div class="section page-width-normal">
+  {% render 'breadcrumbs' %}
+
   <div
     class="service-page spacing-style"
     style="{% render 'spacing-style', settings: section.settings %}"
@@ -180,6 +182,71 @@
     </aside>
   </div>
 </div>
+
+{%- comment -%}
+  Service structured data, built from the same metafields the page renders above, so the
+  markup and the schema can never describe different things.
+
+  `provider` points at the business entity declared in `snippets/structured-data.liquid`
+  by `@id` rather than restating the name and address here. Nothing is added that the
+  merchant has not filled in: no price, no rating, no review.
+{%- endcomment -%}
+{%- capture service_description -%}
+  {{ mf.service_subtitle.value | default: mf.service_description }}
+{%- endcapture -%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": {{ canonical_url | append: '#service' | json }},
+    "name": {{ service_title | strip_html | strip | json }},
+    "url": {{ canonical_url | json }},
+    "provider": { "@id": {{ shop.url | append: '/#organization' | json }} },
+    "mainEntityOfPage": { "@id": {{ canonical_url | append: '#webpage' | json }} }
+    {%- assign service_description_value = service_description | strip_html | strip_newlines | strip -%}
+    {%- if service_description_value != blank %},
+      "description": {{ service_description_value | truncatewords: 60 | json }}
+    {%- endif -%}
+    {%- if mf.service_image.value != blank %},
+      "image": {{ mf.service_image.value | image_url: width: 1200 | prepend: 'https:' | json }}
+    {%- endif -%}
+    {%- if settings.seo_service_areas != blank %},
+      "areaServed": [
+        {%- assign service_page_areas = settings.seo_service_areas | split: ',' -%}
+        {%- assign service_page_area_index = 0 -%}
+        {%- for service_page_area in service_page_areas -%}
+          {%- assign service_page_area_value = service_page_area | strip -%}
+          {%- if service_page_area_value != blank -%}
+            {%- if service_page_area_index > 0 %},{% endif -%}
+            { "@type": "Place", "name": {{ service_page_area_value | json }} }
+            {%- assign service_page_area_index = service_page_area_index | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    {%- endif -%}
+    {%- if services.size > 0 %},
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": {{ section.settings.services_heading | strip | json }},
+        "itemListElement": [
+          {%- assign service_item_index = 0 -%}
+          {%- for service in services -%}
+            {%- assign service_item = service | strip_html | strip -%}
+            {%- if service_item != blank -%}
+              {%- if service_item_index > 0 %},{% endif -%}
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": {{ service_item | json }} }
+              }
+              {%- assign service_item_index = service_item_index | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+    {%- endif -%}
+  }
+</script>
 
 {% schema %}
 {

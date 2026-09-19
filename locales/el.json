@@ -28,6 +28,9 @@
     },
     "slider_label": "Ρυθμιστικό"
   },
+  "breadcrumbs": {
+    "label": "Διαδρομή πλοήγησης"
+  },
   "accessibility": {
     "play_model": "Αναπαραγωγή μοντέλου 3D",
     "play_video": "Αναπαραγωγή βίντεο",

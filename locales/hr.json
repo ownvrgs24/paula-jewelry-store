@@ -28,6 +28,9 @@
     },
     "slider_label": "Kliznik"
   },
+  "breadcrumbs": {
+    "label": "Navigacijska staza"
+  },
   "accessibility": {
     "play_model": "Reproduciraj 3D model",
     "play_video": "Reproduciraj videozapis",

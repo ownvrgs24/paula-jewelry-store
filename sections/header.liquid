@@ -309,17 +309,16 @@
   {% endif %}
 {% endcapture %}
 
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name": {{ shop.name | json }},
-    {% if settings.logo %}
-      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
-    {% endif %}
-    "url": {{ request.origin | append: page.url | json }}
-  }
-</script>
+{% comment %}
+  The Organization entity used to be emitted here. It now lives in the site-wide
+  schema.org graph in `snippets/structured-data.liquid`, where it carries a stable
+  `@id`, the store's real address and phone number, and its verified social profiles,
+  and where the WebSite and WebPage entities can reference it.
+
+  The version that stood here set `"url"` to `request.origin | append: page.url`, which
+  on any page template published the business's URL as that page (`/pages/about-us`,
+  say) instead of the home page. It also used the `http://schema.org` context.
+{% endcomment %}
 
 <header-component
   id="header-component"

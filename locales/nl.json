@@ -28,6 +28,9 @@
     },
     "slider_label": "Schuifregelaar"
   },
+  "breadcrumbs": {
+    "label": "Kruimelpad"
+  },
   "accessibility": {
     "play_model": "3D-model afspelen",
     "play_video": "Video afspelen",

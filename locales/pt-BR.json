@@ -28,6 +28,9 @@
     },
     "slider_label": "Controle deslizante"
   },
+  "breadcrumbs": {
+    "label": "Trilha de navegação"
+  },
   "accessibility": {
     "play_model": "Reproduzir modelo 3D",
     "play_video": "Reproduzir vídeo",

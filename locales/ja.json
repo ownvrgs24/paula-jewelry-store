@@ -28,6 +28,9 @@
     },
     "slider_label": "スライダー"
   },
+  "breadcrumbs": {
+    "label": "パンくずリスト"
+  },
   "accessibility": {
     "play_model": "3Dモデルを再生",
     "play_video": "ビデオを再生",

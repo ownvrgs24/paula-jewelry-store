@@ -28,6 +28,9 @@
     },
     "slider_label": "슬라이더"
   },
+  "breadcrumbs": {
+    "label": "탐색 경로"
+  },
   "accessibility": {
     "play_model": "3D 모델 재생",
     "play_video": "동영상 재생",

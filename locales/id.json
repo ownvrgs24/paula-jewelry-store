@@ -28,6 +28,9 @@
     },
     "slider_label": "Slider"
   },
+  "breadcrumbs": {
+    "label": "Tautan navigasi"
+  },
   "accessibility": {
     "play_model": "Putar model 3D",
     "play_video": "Putar video",

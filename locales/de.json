@@ -28,6 +28,9 @@
     },
     "slider_label": "Slider"
   },
+  "breadcrumbs": {
+    "label": "Breadcrumb"
+  },
   "accessibility": {
     "play_model": "3D-Modell abspielen",
     "play_video": "Video abspielen",

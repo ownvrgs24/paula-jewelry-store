@@ -28,6 +28,9 @@
     },
     "slider_label": "Jazdec"
   },
+  "breadcrumbs": {
+    "label": "Navigačná cesta"
+  },
   "accessibility": {
     "play_model": "Prehrať 3D model",
     "play_video": "Prehrať video",

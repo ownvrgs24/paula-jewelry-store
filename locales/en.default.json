@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "breadcrumbs": {
+    "label": "Breadcrumb"
+  },
   "accessibility": {
     "account": "Account",
     "active_filters": "Active filters:",

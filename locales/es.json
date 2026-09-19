@@ -28,6 +28,9 @@
     },
     "slider_label": "Carrusel"
   },
+  "breadcrumbs": {
+    "label": "Ruta de navegación"
+  },
   "accessibility": {
     "play_model": "Reproducir el modelo 3D",
     "play_video": "Reproducir el video",

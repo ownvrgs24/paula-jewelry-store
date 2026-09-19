@@ -28,6 +28,9 @@
     },
     "slider_label": "Csúszka"
   },
+  "breadcrumbs": {
+    "label": "Morzsamenü"
+  },
   "accessibility": {
     "play_model": "3D-modell lejátszása",
     "play_video": "Videó lejátszása",

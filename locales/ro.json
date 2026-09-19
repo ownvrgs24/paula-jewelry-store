@@ -28,6 +28,9 @@
     "payment_methods": "Metode de plată",
     "slider_label": "Cursor"
   },
+  "breadcrumbs": {
+    "label": "Traseu de navigare"
+  },
   "accessibility": {
     "play_model": "Redă modelul 3D",
     "play_video": "Redă videoclipul",

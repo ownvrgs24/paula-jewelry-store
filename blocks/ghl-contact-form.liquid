@@ -39,9 +39,16 @@
       {{- block.settings.loading_text | escape -}}
     </p>
 
+    {%- comment -%}
+      loading="lazy" keeps the whole GoHighLevel form app off the initial load when the
+      block sits below the fold, which is where a contact form usually lives. A form
+      already in the viewport still loads immediately, so nothing is delayed for the
+      visitor who can see it.
+    {%- endcomment -%}
     <iframe
       class="ghl-contact-form__iframe"
       src="{{ form_url }}"
+      loading="lazy"
       id="inline-{{ ghl_form_id }}"
       title="{{ block.settings.form_name | escape }}"
       data-layout="{'id':'INLINE'}"

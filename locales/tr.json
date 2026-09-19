@@ -28,6 +28,9 @@
     },
     "slider_label": "Kaydırıcı"
   },
+  "breadcrumbs": {
+    "label": "Sayfa yolu"
+  },
   "accessibility": {
     "play_model": "3B modeli oynat",
     "play_video": "Videoyu oynat",

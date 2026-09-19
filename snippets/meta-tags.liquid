@@ -15,14 +15,144 @@
 >
 <meta
   name="theme-color"
-  content=""
+  content="{{ settings.page_background_color }}"
 >
 
 {%- liquid
+  # ---------------------------------------------------------------------------
+  # Meta description
+  #
+  # `page_description` is whatever the merchant typed into the admin's SEO field and
+  # always wins. Where it is empty, fall back to the resource's own copy rather than
+  # emitting nothing: a description drawn from the page's real content is unique by
+  # construction, which is what keeps these off Search Console's duplicate report.
+  # Nothing here invents text — every branch reads existing store content.
+  # ---------------------------------------------------------------------------
+  assign meta_description = page_description
+
+  if meta_description == blank
+    case request.page_type
+      when 'product'
+        assign meta_description = product.description
+      when 'collection'
+        assign meta_description = collection.description
+      when 'article'
+        assign meta_description = article.excerpt_or_content
+      when 'blog'
+        assign meta_description = blog.metafields.descriptors.subtitle.value
+      when 'page'
+        assign meta_description = page.content
+    endcase
+
+    assign meta_description = meta_description | strip_html | strip_newlines | strip
+
+    if meta_description == blank
+      assign meta_description = shop.description
+    endif
+
+    # 30 words lands inside the ~155 characters Google renders without truncating.
+    assign meta_description = meta_description | truncatewords: 30
+  endif
+
+  # ---------------------------------------------------------------------------
+  # Canonical URL
+  #
+  # Shopify's `canonical_url` is correct for every ordinary page, so it is used as-is.
+  # The exception is a faceted collection or search view: those URLs are near-duplicates
+  # of the unfiltered listing and must not compete with it, so the canonical is pointed
+  # back at the clean listing URL and the view is marked noindex,follow below.
+  # ---------------------------------------------------------------------------
+  assign has_active_facets = false
+
+  # Only build the facet list on templates that have one. Iterating a nil collection is
+  # not reliably a no-op in Liquid, so the loop is guarded rather than fed an empty value.
+  assign facet_source = nil
+
+  if request.page_type == 'collection'
+    assign facet_source = collection.filters
+  elsif request.page_type == 'search'
+    assign facet_source = search.filters
+  endif
+
+  if facet_source.size > 0
+    for facet in facet_source
+      if facet.active_values.size > 0
+        assign has_active_facets = true
+        break
+      endif
+
+      # Price ranges carry their state in min/max rather than in active_values.
+      if facet.min_value.value != blank or facet.max_value.value != blank
+        assign has_active_facets = true
+        break
+      endif
+    endfor
+  endif
+
+  assign has_sort_override = false
+  if request.page_type == 'collection' and collection.sort_by != blank
+    if collection.sort_by != collection.default_sort_by
+      assign has_sort_override = true
+    endif
+  endif
+
+  assign is_faceted_view = false
+  if settings.seo_noindex_faceted
+    if has_active_facets or has_sort_override or current_tags
+      assign is_faceted_view = true
+    endif
+  endif
+
+  assign canonical_href = canonical_url
+
+  if is_faceted_view and request.page_type == 'collection'
+    assign canonical_href = request.origin | append: collection.url
+  elsif is_faceted_view and request.page_type == 'search'
+    assign canonical_href = request.origin | append: routes.search_url
+  endif
+
+  # ---------------------------------------------------------------------------
+  # Robots directives
+  #
+  # Only views that genuinely should not compete in search are excluded, and each stays
+  # crawlable (`follow`) so link equity still flows through to the pages that should
+  # rank. Everything not listed here is left indexable on purpose.
+  # ---------------------------------------------------------------------------
+  assign robots_directive = ''
+
+  if is_faceted_view
+    # Faceted and sorted listings are permutations of a page that is already indexed.
+    assign robots_directive = 'noindex, follow'
+  endif
+
+  case request.page_type
+    when 'search'
+      # Internal search results are thin and infinitely variable.
+      assign robots_directive = 'noindex, follow'
+    when 'cart'
+      assign robots_directive = 'noindex, follow'
+    when 'gift_card'
+      # A gift card page is addressed to one recipient and carries a private code.
+      assign robots_directive = 'noindex, nofollow'
+    when 'password'
+      assign robots_directive = 'noindex, nofollow'
+    when 'customers/account', 'customers/login', 'customers/register', 'customers/order', 'customers/addresses', 'customers/activate_account', 'customers/reset_password'
+      assign robots_directive = 'noindex, nofollow'
+  endcase
+-%}
+
+{%- if robots_directive != blank -%}
+  <meta
+    name="robots"
+    content="{{ robots_directive }}"
+  >
+{%- endif -%}
+
+{%- liquid
   assign og_title = page_title | default: shop.name
-  assign og_url = canonical_url | default: request.origin
+  assign og_url = canonical_href | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = meta_description | default: shop.description | default: shop.name
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -53,11 +183,19 @@
   property="og:description"
   content="{{ og_description | escape }}"
 >
+<meta
+  property="og:locale"
+  content="{{ request.locale.iso_code }}"
+>
 
 {%- if page_image -%}
+  {%- comment -%}
+    Both tags are https. An http: URL here is a mixed-content reference that some
+    scrapers drop outright, which costs the share preview its image.
+  {%- endcomment -%}
   <meta
     property="og:image"
-    content="http:{{ page_image | image_url }}"
+    content="https:{{ page_image | image_url }}"
   >
   <meta
     property="og:image:secure_url"
@@ -70,6 +208,10 @@
   <meta
     property="og:image:height"
     content="{{ page_image.height }}"
+  >
+  <meta
+    property="og:image:alt"
+    content="{{ page_image.alt | default: og_title | escape }}"
   >
 {%- endif -%}
 
@@ -84,10 +226,10 @@
   >
 {%- endif -%}
 
-{%- if settings.social_twitter_link != blank -%}
+{%- if settings.seo_social_x != blank -%}
   <meta
     name="twitter:site"
-    content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}"
+    content="{{ settings.seo_social_x | split: '/' | last | prepend: '@' }}"
   >
 {%- endif -%}
 <meta
@@ -103,21 +245,18 @@
   content="{{ og_description | escape }}"
 >
 
-<title>
-  {{ page_title }}
-  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-  {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-</title>
+<title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
 
 <link
   rel="canonical"
-  href="{{ canonical_url }}"
+  href="{{ canonical_href }}"
 >
 
-{% if page_description %}
+{%- if meta_description != blank -%}
   <meta
     name="description"
-    content="{{ page_description | escape }}"
+    content="{{ meta_description | escape }}"
   >
-{% endif %}
+{%- endif -%}
+
+{% render 'structured-data' %}

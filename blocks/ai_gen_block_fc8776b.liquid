@@ -75,13 +75,42 @@
 <div class="ai-dynamic-image-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-dynamic-image-wrapper-{{ ai_gen_id }}">
     {% if final_image %}
-      <img
-        src="{{ final_image | image_url: width: 2000 }}"
-        alt="{{ final_image.alt | escape }}"
-        loading="lazy"
-        width="{{ final_image.width }}"
-        height="{{ final_image.height }}"
-      >
+      {%- comment -%}
+        The single `src` at width 2000 shipped the same 2000px file to a phone as to a
+        desktop. `widths` plus `sizes` lets the browser pick from the CDN's resized
+        variants, and `desktop_width_percent` is fed into `sizes` so the estimate matches
+        how wide the image actually renders.
+
+        Loading priority is a merchant choice rather than a hard-coded `lazy`: when this
+        block is the first thing on the page it is usually the Largest Contentful Paint
+        element, and deferring it delays the metric directly.
+      {%- endcomment -%}
+      {%- liquid
+        assign image_widths = '400, 600, 800, 1000, 1200, 1600, 2000'
+
+        assign desktop_vw = block.settings.desktop_width_percent | default: 100
+        assign image_sizes = '(min-width: 750px) ' | append: desktop_vw | append: 'vw, 100vw'
+
+        if block.settings.is_above_the_fold
+          assign image_loading = 'eager'
+          assign image_fetchpriority = 'high'
+        else
+          assign image_loading = 'lazy'
+          assign image_fetchpriority = 'auto'
+        endif
+      -%}
+      {{
+        final_image
+        | image_url: width: 2000
+        | image_tag:
+          widths: image_widths,
+          sizes: image_sizes,
+          width: final_image.width,
+          height: final_image.height,
+          alt: final_image.alt,
+          loading: image_loading,
+          fetchpriority: image_fetchpriority
+      }}
     {% else %}
       <div class="ai-dynamic-image-placeholder-{{ ai_gen_id }}">
         {{ 'image' | placeholder_svg_tag }}
@@ -110,6 +139,13 @@
       "type": "image_picker",
       "id": "image",
       "label": "Fallback image"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_above_the_fold",
+      "label": "This image is visible without scrolling",
+      "info": "Turn this on when the image sits at the very top of the page. It then loads at high priority instead of being deferred, which is what Google measures as Largest Contentful Paint. Leave it off for images further down, so they do not compete with the top of the page.",
+      "default": false
     },
     {
       "type": "header",

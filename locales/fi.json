@@ -28,6 +28,9 @@
     },
     "slider_label": "Liukusäädin"
   },
+  "breadcrumbs": {
+    "label": "Murupolku"
+  },
   "accessibility": {
     "play_model": "Toista 3D-malli",
     "play_video": "Toista video",

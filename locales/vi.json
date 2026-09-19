@@ -28,6 +28,9 @@
     },
     "slider_label": "Thanh trượt"
   },
+  "breadcrumbs": {
+    "label": "Đường dẫn điều hướng"
+  },
   "accessibility": {
     "play_model": "Phát mô hình 3D",
     "play_video": "Phát video",

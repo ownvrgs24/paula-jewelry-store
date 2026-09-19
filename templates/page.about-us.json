@@ -15,7 +15,7 @@
         "text_FHFAXF": {
           "type": "text",
           "settings": {
-            "text": "<h2>Jewelry Made to Last.<br/>Care You Can Trust.</h2>",
+            "text": "<h1>Jewelry Made to Last.<br/>Care You Can Trust.</h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -107,7 +107,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h3>What We Offer</h3>",
+            "text": "<h2>What We Offer</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -287,7 +287,7 @@
                 "text_yGYeWk": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Jewelry Repairs</h4>",
+                    "text": "<h3>Jewelry Repairs</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -439,7 +439,7 @@
                 "text_FFhKdX": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Ring Sizing & Adjustments</h4>",
+                    "text": "<h3>Ring Sizing & Adjustments</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -591,7 +591,7 @@
                 "text_FyNwbR": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Cleaning & Polishing</h4>",
+                    "text": "<h3>Cleaning & Polishing</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -743,7 +743,7 @@
                 "text_DxwT9z": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Stone Setting & Replacement</h4>",
+                    "text": "<h3>Stone Setting & Replacement</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -935,7 +935,7 @@
                 "text_7Vf3ck": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Laser Engraving & Personalization</h4>",
+                    "text": "<h3>Laser Engraving & Personalization</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1087,7 +1087,7 @@
                 "text_KV8B8J": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Custom Jewelry Design</h4>",
+                    "text": "<h3>Custom Jewelry Design</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1239,7 +1239,7 @@
                 "text_XymQV4": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Watch Repair & Maintenance</h4>",
+                    "text": "<h3>Watch Repair & Maintenance</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1391,7 +1391,7 @@
                 "text_HJmWJy": {
                   "type": "text",
                   "settings": {
-                    "text": "<h4>Rhodium Plating</h4>",
+                    "text": "<h3>Rhodium Plating</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1494,7 +1494,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h3>Quality in Every Detail</h3>",
+            "text": "<h2>Quality in Every Detail</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -1608,6 +1608,16 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "related_services": {
+      "type": "related-services",
+      "settings": {
+        "heading": "Other services we offer",
+        "intro": "Bring us a repair, a resize or a restoration — every piece is handled in-house.",
+        "menu": "main-menu",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
@@ -1616,6 +1626,7 @@
     "section_YXQeRc",
     "section_6LzWiD",
     "section_dHpHNH",
-    "main"
+    "main",
+    "related_services"
   ]
 }

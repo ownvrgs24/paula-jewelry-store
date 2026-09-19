@@ -2116,5 +2116,139 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Search engines & AI",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Controls the structured data (schema.org) and search-engine directives this theme adds to every page. Your business name, address and phone number are read from Settings → Store details, so keep those accurate."
+      },
+      {
+        "type": "select",
+        "id": "seo_business_type",
+        "label": "Business type",
+        "info": "Choose \"Jewelry store\" if customers can visit you in person — it adds the local-business details Google uses for map and \"near me\" results. Choose \"Online only\" if you have no physical location.",
+        "options": [
+          {
+            "value": "JewelryStore",
+            "label": "Jewelry store (has a physical location)"
+          },
+          {
+            "value": "Store",
+            "label": "Retail store (has a physical location)"
+          },
+          {
+            "value": "Organization",
+            "label": "Online only — no physical location"
+          }
+        ],
+        "default": "JewelryStore"
+      },
+      {
+        "type": "textarea",
+        "id": "seo_opening_hours",
+        "label": "Opening hours",
+        "info": "One line per group of days, e.g. \"Mo-Fr 10:00-18:00\". Use Sa and Su for the weekend. Leave empty if you would rather not publish hours — never guess, because wrong hours show up directly in Google.",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "seo_price_range",
+        "label": "Price range",
+        "info": "A rough indicator shown in local results, e.g. \"$$\" or \"$100-$5000\". Leave empty to omit it.",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "seo_latitude",
+        "label": "Latitude",
+        "info": "Only needed if your store's map pin is missing. Find it by right-clicking your shop in Google Maps and copying the first number. Leave empty to use the location from your Shopify store details.",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "seo_longitude",
+        "label": "Longitude",
+        "info": "The second number from the same Google Maps coordinates. Leave empty to use the location from your Shopify store details.",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "seo_service_areas",
+        "label": "Areas served",
+        "info": "Comma-separated towns or regions you serve, e.g. \"Poway, San Diego, Rancho Bernardo\". Helps Google connect the store to local searches. Leave empty to omit.",
+        "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Social profiles"
+      },
+      {
+        "type": "paragraph",
+        "content": "Linking your official profiles here tells Google and AI assistants that these accounts belong to your business. Paste the full URL of each profile you actually own."
+      },
+      {
+        "type": "url",
+        "id": "seo_social_facebook",
+        "label": "Facebook page",
+        "info": "The full URL of your business page.",
+        "default": "https://www.facebook.com/profile.php?id=61594169951937"
+      },
+      {
+        "type": "url",
+        "id": "seo_social_instagram",
+        "label": "Instagram profile",
+        "info": "The full URL of your business profile.",
+        "default": "https://www.instagram.com/vpluxejewelers/"
+      },
+      {
+        "type": "url",
+        "id": "seo_social_tiktok",
+        "label": "TikTok profile",
+        "info": "The full URL of your business profile.",
+        "default": "https://www.tiktok.com/@vpluxe.jewelers"
+      },
+      {
+        "type": "url",
+        "id": "seo_social_youtube",
+        "label": "YouTube channel",
+        "info": "Leave empty if you don't have one."
+      },
+      {
+        "type": "url",
+        "id": "seo_social_pinterest",
+        "label": "Pinterest profile",
+        "info": "Leave empty if you don't have one."
+      },
+      {
+        "type": "url",
+        "id": "seo_social_x",
+        "label": "X (Twitter) profile",
+        "info": "Also used for the Twitter card byline on shared links."
+      },
+      {
+        "type": "header",
+        "content": "Indexing"
+      },
+      {
+        "type": "checkbox",
+        "id": "seo_noindex_faceted",
+        "label": "Keep filtered and sorted views out of search results",
+        "info": "Recommended. When a shopper narrows a collection by filter, sort or tag, the resulting page is a near-copy of the full collection. Leaving this on keeps only the full collection in Google, so your listings never compete with themselves. Turn it off only if you deliberately use tag pages as landing pages.",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Breadcrumbs"
+      },
+      {
+        "type": "checkbox",
+        "id": "seo_breadcrumbs_enabled",
+        "label": "Show breadcrumb trail",
+        "info": "Adds a small \"Home / Collection / Product\" trail near the top of product, collection, page and blog templates. Helps visitors navigate and helps Google understand how your pages relate.",
+        "default": true
+      }
+    ]
   }
 ]

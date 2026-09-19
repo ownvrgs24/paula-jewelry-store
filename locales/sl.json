@@ -28,6 +28,9 @@
     },
     "slider_label": "Drsnik"
   },
+  "breadcrumbs": {
+    "label": "Drobtinice"
+  },
   "accessibility": {
     "play_model": "Predvajaj 3D-model",
     "play_video": "Predvajaj videoposnetek",

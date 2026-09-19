@@ -28,6 +28,9 @@
     },
     "slider_label": "Ползунок"
   },
+  "breadcrumbs": {
+    "label": "Навигационная цепочка"
+  },
   "accessibility": {
     "play_model": "Открыть объемную модель",
     "play_video": "Воспроизвести видео",

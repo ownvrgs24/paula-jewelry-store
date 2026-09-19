@@ -28,6 +28,9 @@
     },
     "slider_label": "Плъзгач"
   },
+  "breadcrumbs": {
+    "label": "Навигационна пътека"
+  },
   "accessibility": {
     "play_model": "Възпроизвеждане на 3D модел",
     "play_video": "Възпроизвеждане на видеоклип",

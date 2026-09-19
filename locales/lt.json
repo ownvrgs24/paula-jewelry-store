@@ -28,6 +28,9 @@
     },
     "slider_label": "Slankiklis"
   },
+  "breadcrumbs": {
+    "label": "Naršymo kelias"
+  },
   "accessibility": {
     "play_model": "Paleisti 3D modelį",
     "play_video": "Paleisti vaizdo įrašą",

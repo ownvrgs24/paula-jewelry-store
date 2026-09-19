@@ -28,6 +28,9 @@
     },
     "slider_label": "投影播放器"
   },
+  "breadcrumbs": {
+    "label": "麵包屑導覽"
+  },
   "accessibility": {
     "play_model": "播放 3D 模型",
     "play_video": "播放影片",

@@ -28,6 +28,9 @@
     },
     "slider_label": "Cursore"
   },
+  "breadcrumbs": {
+    "label": "Percorso di navigazione"
+  },
   "accessibility": {
     "play_model": "Riproduci modello 3D",
     "play_video": "Riproduci video",

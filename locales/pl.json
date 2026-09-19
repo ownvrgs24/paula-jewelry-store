@@ -28,6 +28,9 @@
     },
     "slider_label": "Suwak"
   },
+  "breadcrumbs": {
+    "label": "Ścieżka nawigacji"
+  },
   "accessibility": {
     "play_model": "Odtwórz model 3D",
     "play_video": "Odtwórz film",

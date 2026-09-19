@@ -28,6 +28,9 @@
     },
     "slider_label": "Bild"
   },
+  "breadcrumbs": {
+    "label": "Brödsmulor"
+  },
   "accessibility": {
     "play_model": "Spela 3D-modell",
     "play_video": "Spela video",
