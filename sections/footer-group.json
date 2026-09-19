@@ -602,6 +602,13 @@
         "padding-block-end": 22
       }
     },
+    "chat_widget": {
+      "type": "chat-widget",
+      "settings": {
+        "enabled": true,
+        "widget_id": "6aae411f360c1f27978a7fb1"
+      }
+    },
     "newsletter_popup": {
       "type": "newsletter-popup",
       "settings": {
@@ -617,6 +624,7 @@
   "order": [
     "section_jaeba3",
     "section_mV3WNP",
-    "newsletter_popup"
+    "newsletter_popup",
+    "chat_widget"
   ]
 }
