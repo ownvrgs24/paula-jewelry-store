@@ -1,0 +1,18 @@
+{% doc %}
+  Loads the LeadConnector (GoHighLevel) chat bubble on every page.
+
+  Rendered from `snippets/scripts.liquid` rather than placed in the footer
+  section group: section groups live in store-owned JSON that the theme editor
+  writes, so a Git push cannot reliably add a section to them. Loading from a
+  snippet keeps the widget deployable from this repo alone.
+
+  LeadConnector styles and positions the bubble itself, so there is no markup
+  or CSS here.
+{% enddoc %}
+
+<script
+  src="https://widgets.leadconnectorhq.com/loader.js"
+  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+  data-widget-id="6aae411f360c1f27978a7fb1"
+  defer
+></script>
