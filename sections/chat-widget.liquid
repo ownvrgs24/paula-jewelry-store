@@ -1,0 +1,46 @@
+{% comment %}
+  Loads the LeadConnector (GoHighLevel) chat bubble. Add it to the footer group
+  so it renders on every page. The widget itself is styled and positioned by
+  LeadConnector, so this section outputs no markup of its own.
+
+  The loader is skipped inside the theme editor: it re-runs every time a section
+  is re-rendered, which would stack duplicate bubbles on the preview.
+{% endcomment %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+{%- if s.enabled and s.widget_id != blank and request.design_mode == false -%}
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="{{ s.widget_id | escape }}"
+    defer
+  ></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Chat widget",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Show chat widget",
+      "default": true,
+      "info": "Turn off to hide the chat bubble across the whole store without removing this section."
+    },
+    {
+      "type": "text",
+      "id": "widget_id",
+      "label": "Widget ID",
+      "default": "6aae411f360c1f27978a7fb1",
+      "info": "Found in LeadConnector under Sites → Chat Widget. Copy the ID from the install code it gives you."
+    }
+  ]
+}
+{% endschema %}
