@@ -112,6 +112,17 @@
     "variant_button_radius": 0,
     "variant_button_width": "equal-width-buttons",
     "content_for_index": [],
+    "blocks": {
+      "14722065763954342323": {
+        "type": "shopify://apps/ai-product-description/blocks/instant-speed-boost/0199f770-8893-7fd2-aa18-60494ee27236",
+        "disabled": false,
+        "settings": {
+          "enable_instant_page": true,
+          "enable_quick_link": true,
+          "enable_broken_link_monitor": true
+        }
+      }
+    },
     "color_palette": {
       "background": "#f0f0f2",
       "foreground": "#000000",
