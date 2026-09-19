@@ -68,10 +68,21 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "related_services": {
+      "type": "related-services",
+      "settings": {
+        "heading": "Other services we offer",
+        "intro": "Bring us a repair, a resize or a restoration — every piece is handled in-house.",
+        "menu": "main-menu",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
     "hero_N36LwK",
-    "main"
+    "main",
+    "related_services"
   ]
 }

@@ -23,6 +23,8 @@
       {% render 'spacing-style', settings: section.settings %}
     "
   >
+    {% render 'breadcrumbs' %}
+
     {% content_for 'blocks' %}
 
     {% if blog.comments_enabled? %}

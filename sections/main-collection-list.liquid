@@ -26,6 +26,8 @@
     {% render 'gap-style', value: section.settings.gap %}
   "
 >
+  {% render 'breadcrumbs' %}
+
   <div class="section-resource-list__content">
     {%- content_for 'blocks' -%}
   </div>

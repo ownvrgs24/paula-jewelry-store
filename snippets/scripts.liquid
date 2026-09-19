@@ -309,20 +309,6 @@
   };
 </script>
 
-{%- comment -%}
-  Inlined from `snippets/resource-hints.liquid` — see the workaround note in
-  `snippets/meta-tags.liquid`. Restore with `{% render 'resource-hints' %}` once the
-  store is receiving newly added theme files again.
-
-  RemoteAsset is disabled here because it fires on any external host, but a connection
-  hint is not an asset: these hosts cannot be served from Shopify's CDN.
-{%- endcomment -%}
-{% # theme-check-disable RemoteAsset %}
-<link rel="preconnect" href="https://widgets.leadconnectorhq.com" crossorigin>
-<link rel="dns-prefetch" href="https://widgets.leadconnectorhq.com">
-
-<link rel="dns-prefetch" href="https://link.msgsndr.com">
-<link rel="dns-prefetch" href="https://api.leadconnectorhq.com">
-{% # theme-check-enable RemoteAsset %}
+{% render 'resource-hints' %}
 
 {% render 'chat-widget' %}

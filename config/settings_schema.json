@@ -2149,36 +2149,31 @@
         "type": "textarea",
         "id": "seo_opening_hours",
         "label": "Opening hours",
-        "info": "One line per group of days, e.g. \"Mo-Fr 10:00-18:00\". Use Sa and Su for the weekend. Leave empty if you would rather not publish hours — never guess, because wrong hours show up directly in Google.",
-        "default": ""
+        "info": "One line per group of days, e.g. \"Mo-Fr 10:00-18:00\". Use Sa and Su for the weekend. Leave empty if you would rather not publish hours — never guess, because wrong hours show up directly in Google."
       },
       {
         "type": "text",
         "id": "seo_price_range",
         "label": "Price range",
-        "info": "A rough indicator shown in local results, e.g. \"$$\" or \"$100-$5000\". Leave empty to omit it.",
-        "default": ""
+        "info": "A rough indicator shown in local results, e.g. \"$$\" or \"$100-$5000\". Leave empty to omit it."
       },
       {
         "type": "text",
         "id": "seo_latitude",
         "label": "Latitude",
-        "info": "Only needed if your store's map pin is missing. Find it by right-clicking your shop in Google Maps and copying the first number. Leave empty to use the location from your Shopify store details.",
-        "default": ""
+        "info": "Only needed if your store's map pin is missing. Find it by right-clicking your shop in Google Maps and copying the first number. Leave empty to use the location from your Shopify store details."
       },
       {
         "type": "text",
         "id": "seo_longitude",
         "label": "Longitude",
-        "info": "The second number from the same Google Maps coordinates. Leave empty to use the location from your Shopify store details.",
-        "default": ""
+        "info": "The second number from the same Google Maps coordinates. Leave empty to use the location from your Shopify store details."
       },
       {
         "type": "text",
         "id": "seo_service_areas",
         "label": "Areas served",
-        "info": "Comma-separated towns or regions you serve, e.g. \"Poway, San Diego, Rancho Bernardo\". Helps Google connect the store to local searches. Leave empty to omit.",
-        "default": ""
+        "info": "Comma-separated towns or regions you serve, e.g. \"Poway, San Diego, Rancho Bernardo\". Helps Google connect the store to local searches. Leave empty to omit."
       },
       {
         "type": "header",
@@ -2235,8 +2230,7 @@
         "type": "text",
         "id": "seo_google_verification",
         "label": "Google Search Console verification code",
-        "info": "In Search Console choose \"HTML tag\" as the verification method, then paste just the code from content=\"...\" here — not the whole tag. Shopify cannot serve Google's HTML *file* method, so this is the route that works. Once verified you can safely leave this in place.",
-        "default": ""
+        "info": "In Search Console choose \"HTML tag\" as the verification method, then paste just the code from content=\"...\" here — not the whole tag. Shopify cannot serve Google's HTML *file* method, so this is the route that works. Once verified, leave it in place: Google re-checks periodically."
       },
       {
         "type": "header",

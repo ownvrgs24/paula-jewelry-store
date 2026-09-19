@@ -202,7 +202,14 @@
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": {{ shop_url | append: routes.search_url | append: '?q={search_term_string}' | json }}
+            {%- comment -%}
+              `{search_term_string}` is written as literal text in the JSON string rather
+              than inside the Liquid expression. Shopify's Liquid parser rejects a brace
+              inside a quoted argument, so the `| append: '?q={search_term_string}'` form
+              fails to parse server-side even though local tooling accepts it. Both values
+              interpolated here are URL-safe and cannot contain a quote.
+            {%- endcomment -%}
+            "urlTemplate": "{{ shop_url }}{{ routes.search_url }}?q={search_term_string}"
           },
           "query-input": "required name=search_term_string"
         }
