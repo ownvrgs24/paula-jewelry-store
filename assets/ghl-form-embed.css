@@ -1,0 +1,174 @@
+/* GoHighLevel form embed: see snippets/ghl-form-embed.liquid */
+
+.ghl-form {
+  display: block;
+  position: relative;
+}
+
+.ghl-form__iframe {
+  display: block;
+  width: 100%;
+  min-height: var(--ghl-form-min-height, 940px);
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+/*
+ * Once the form is up, GoHighLevel sizes the iframe to its own content. Dropping the
+ * reserved height out of the way lets that win, so a phone does not end up with a
+ * few hundred pixels of dead space below a form that is shorter than the reservation.
+ * The floor that remains keeps the form usable if the resize message never lands.
+ */
+.ghl-form[data-loaded='true'] .ghl-form__iframe {
+  min-height: 24rem;
+}
+
+.ghl-form__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  padding: var(--padding-xl);
+  border-radius: 8px;
+  background-color: var(--color-background);
+
+  /*
+   * The placeholder covers a form that is already there, rather than standing in for a
+   * hidden one. Nothing it does can make the form unreachable: it never takes a tap,
+   * and it clears itself on a timer even if the script behind it never runs.
+   */
+  pointer-events: none;
+  animation: ghl-form-give-up 0s linear 8s forwards;
+  transition: opacity var(--animation-speed-slow, 0.25s) var(--animation-easing, ease-in-out),
+    visibility var(--animation-speed-slow, 0.25s);
+}
+
+.ghl-form[data-loaded='true'] .ghl-form__loader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes ghl-form-give-up {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Name and email sit side by side in the form, and stack on narrow screens. */
+.ghl-form__loader-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-md);
+}
+
+.ghl-form__loader-row .ghl-form__skeleton {
+  flex: 1 1 12rem;
+}
+
+.ghl-form__skeleton {
+  display: block;
+  height: 3.25rem;
+  border-radius: 4px;
+  background-color: rgb(var(--color-foreground-rgb) / var(--opacity-10));
+}
+
+.ghl-form__skeleton--heading {
+  width: 60%;
+  height: 1.5rem;
+}
+
+.ghl-form__skeleton--subheading {
+  width: 80%;
+  height: 1rem;
+  margin-block-end: var(--gap-md);
+}
+
+.ghl-form__skeleton--message {
+  flex: 1;
+  min-height: 10rem;
+}
+
+.ghl-form__skeleton--consent {
+  height: 2.25rem;
+}
+
+.ghl-form__skeleton--button {
+  height: 3.5rem;
+  margin-block-start: var(--gap-md);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ghl-form__skeleton {
+    animation: ghl-form-pulse 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes ghl-form-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/*
+ * Page content beside the form, widened past the section container.
+ *
+ * The breakout is done with margins alone. The transform-based version this replaces
+ * put the iframe inside a transformed ancestor, which WebKit paints as a blank box on
+ * iOS, so the form simply did not appear on iPhones.
+ */
+.ghl-split-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  width: 95vw;
+  max-width: 1400px;
+  margin-block: 60px;
+  margin-inline: calc(50% - min(47.5vw, 700px));
+}
+
+.ghl-split-layout__content {
+  padding-block-start: 4rem;
+}
+
+.ghl-split-layout__form {
+  width: 100%;
+}
+
+/* One column on a phone, so there is nothing to break out of. */
+@media screen and (max-width: 767px) {
+  .ghl-split-layout {
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  .ghl-split-layout__content {
+    padding-block-start: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ghl-split-layout {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: start;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .ghl-split-layout {
+    gap: 100px;
+  }
+}
+
+.ghl-form__placeholder {
+  padding: var(--padding-lg) var(--padding-xl);
+  border: 1px dashed var(--color-input-border);
+}

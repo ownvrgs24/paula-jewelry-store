@@ -1,0 +1,91 @@
+{%- doc -%}
+  Renders a GoHighLevel form in an iframe, behind a skeleton placeholder that
+  clears itself once the form paints.
+
+  The placeholder never hides the form: the iframe is always visible underneath,
+  so a failed script or an unsupported browser leaves a working form rather than
+  a blank panel.
+
+  @param {string} [form_url] - Form address from GoHighLevel (Sites > Forms > Integrate).
+  @param {string} [form_name] - Form name, used by screen readers and GoHighLevel reporting.
+  @param {string} [loading_text] - Announced by screen readers while the form loads.
+  @param {number} [min_height] - Height reserved before the form loads, in pixels.
+  @param {string} [instance] - Suffix for the iframe id. Only needed when a page holds
+    more than one copy of the same form, so GoHighLevel's resizer targets the right one.
+
+  @example
+  {% render 'ghl-form-embed', form_url: block.settings.form_url, min_height: 940 %}
+{%- enddoc -%}
+
+{% liquid
+  assign ghl_url = form_url | default: 'https://api.leadconnectorhq.com/widget/form/mw4q46EMht3eEFMHBVR5' | strip
+  assign ghl_name = form_name | default: '1. Contact Form'
+  assign ghl_loading_text = loading_text | default: 'Loading the contact form'
+  assign ghl_height = min_height | default: 940
+  assign ghl_form_id = ghl_url | split: '?' | first | split: '/' | last
+
+  assign ghl_iframe_id = 'inline-' | append: ghl_form_id
+  if instance != blank
+    assign ghl_iframe_id = ghl_iframe_id | append: '-' | append: instance
+  endif
+%}
+
+{%- if ghl_url != blank -%}
+  {{ 'ghl-form-embed.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'ghl-form-embed.js' | asset_url }}" defer></script>
+
+  <ghl-form-embed class="ghl-form" style="--ghl-form-min-height: {{ ghl_height }}px;">
+    {%- comment -%}
+      Placeholder shown until the GoHighLevel iframe reports that it has loaded.
+      It mirrors the shape of a form so the page does not reflow when the real one arrives.
+    {%- endcomment -%}
+    <div class="ghl-form__loader" aria-hidden="true">
+      <span class="ghl-form__skeleton ghl-form__skeleton--heading"></span>
+      <span class="ghl-form__skeleton ghl-form__skeleton--subheading"></span>
+      <div class="ghl-form__loader-row">
+        <span class="ghl-form__skeleton"></span>
+        <span class="ghl-form__skeleton"></span>
+      </div>
+      <span class="ghl-form__skeleton"></span>
+      <span class="ghl-form__skeleton"></span>
+      <span class="ghl-form__skeleton ghl-form__skeleton--message"></span>
+      <span class="ghl-form__skeleton ghl-form__skeleton--consent"></span>
+      <span class="ghl-form__skeleton ghl-form__skeleton--consent"></span>
+      <span class="ghl-form__skeleton ghl-form__skeleton--button"></span>
+    </div>
+
+    <p class="ghl-form__status visually-hidden" role="status">{{ ghl_loading_text | escape }}</p>
+
+    {%- comment -%}
+      Attributes follow GoHighLevel's own embed code. Notably absent: loading="lazy",
+      which on a long phone page delays the iframe past the point where the placeholder
+      gives up, and scrolling="no", which traps the submit button out of reach if the
+      resize message never arrives.
+    {%- endcomment -%}
+    <iframe
+      class="ghl-form__iframe"
+      src="{{ ghl_url }}"
+      id="{{ ghl_iframe_id }}"
+      title="{{ ghl_name | escape }}"
+      data-layout="{'id':'INLINE'}"
+      data-trigger-type="alwaysShow"
+      data-trigger-value=""
+      data-activation-type="alwaysActivated"
+      data-activation-value=""
+      data-deactivation-type="neverDeactivate"
+      data-deactivation-value=""
+      data-form-name="{{ ghl_name | escape }}"
+      data-form-id="{{ ghl_form_id }}"
+      data-height="{{ ghl_height }}"
+      data-layout-iframe-id="{{ ghl_iframe_id }}"
+      data-cookie-consent="true"
+      data-cookie-consent-provider="auto"
+    ></iframe>
+
+    {%- comment -%}
+      GoHighLevel's resizer script. It is safe to output once per form: the browser
+      caches the file, and the script keys off each iframe's data-layout-iframe-id.
+    {%- endcomment -%}
+    <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+  </ghl-form-embed>
+{%- endif -%}
