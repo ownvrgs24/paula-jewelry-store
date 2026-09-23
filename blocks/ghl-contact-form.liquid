@@ -1,270 +1,30 @@
-
-
 {% liquid
   assign form_url = block.settings.form_url | strip
-  assign ghl_form_id = form_url | split: '?' | first | split: '/' | last
 %}
 
-<ghl-contact-form-component
+<div
   class="ghl-contact-form spacing-style size-style"
   style="
     {% render 'spacing-style', settings: block.settings %}
     {% render 'size-style', settings: block.settings %}
-    --ghl-contact-form-min-height: {{ block.settings.min_height }}px;
     {% if block.settings.background_color != blank %}background-color: {{ block.settings.background_color }};{% endif %}
   "
   {{ block.shopify_attributes }}
 >
   {%- if form_url != blank -%}
-    {%- comment -%}
-      Placeholder shown until the GoHighLevel iframe reports that it has loaded.
-      It mirrors the shape of a form so the page does not reflow when the real one arrives.
-    {%- endcomment -%}
-    <div class="ghl-contact-form__loader" aria-hidden="true">
-      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--heading"></span>
-      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--subheading"></span>
-      <div class="ghl-contact-form__loader-row">
-        <span class="ghl-contact-form__skeleton"></span>
-        <span class="ghl-contact-form__skeleton"></span>
-      </div>
-      <span class="ghl-contact-form__skeleton"></span>
-      <span class="ghl-contact-form__skeleton"></span>
-      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--message"></span>
-      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--consent"></span>
-      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--consent"></span>
-      <span class="ghl-contact-form__skeleton ghl-contact-form__skeleton--button"></span>
-    </div>
-
-    <p class="ghl-contact-form__status visually-hidden" role="status">
-      {{- block.settings.loading_text | escape -}}
-    </p>
-
-    {%- comment -%}
-      loading="lazy" keeps the whole GoHighLevel form app off the initial load when the
-      block sits below the fold, which is where a contact form usually lives. A form
-      already in the viewport still loads immediately, so nothing is delayed for the
-      visitor who can see it.
-    {%- endcomment -%}
-    <iframe
-      class="ghl-contact-form__iframe"
-      src="{{ form_url }}"
-      loading="lazy"
-      id="inline-{{ ghl_form_id }}"
-      title="{{ block.settings.form_name | escape }}"
-      data-layout="{'id':'INLINE'}"
-      data-trigger-type="alwaysShow"
-      data-trigger-value=""
-      data-activation-type="alwaysActivated"
-      data-activation-value=""
-      data-deactivation-type="neverDeactivate"
-      data-deactivation-value=""
-      data-form-name="{{ block.settings.form_name | escape }}"
-      data-form-id="{{ ghl_form_id }}"
-      data-height="{{ block.settings.min_height }}"
-      data-layout-iframe-id="inline-{{ ghl_form_id }}"
-      scrolling="no"
-    ></iframe>
-
-    {%- comment -%}
-      GoHighLevel's resizer script. It is safe to output once per block: the browser
-      caches the file, and the script keys off each iframe's data-layout-iframe-id.
-    {%- endcomment -%}
-    <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+    {% render 'ghl-form-embed',
+      form_url: form_url,
+      form_name: block.settings.form_name,
+      loading_text: block.settings.loading_text,
+      min_height: block.settings.min_height
+    %}
   {%- elsif request.design_mode -%}
-    <p class="ghl-contact-form__placeholder">
+    {{ 'ghl-form-embed.css' | asset_url | stylesheet_tag }}
+    <p class="ghl-form__placeholder">
       Add your GoHighLevel form URL in this block's settings to display the form.
     </p>
   {%- endif -%}
-</ghl-contact-form-component>
-
-{% stylesheet %}
-  .ghl-contact-form {
-    display: block;
-    position: relative;
-  }
-
-  .ghl-contact-form__iframe {
-    display: block;
-    width: 100%;
-    min-height: var(--ghl-contact-form-min-height, 940px);
-    border: none;
-    border-radius: 8px;
-    background-color: transparent;
-    opacity: 0;
-    transition: opacity var(--animation-speed-slow, 0.25s) var(--animation-easing, ease-in-out);
-  }
-
-  .ghl-contact-form[data-loaded='true'] .ghl-contact-form__iframe {
-    opacity: 1;
-  }
-
-  .ghl-contact-form__loader {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-md);
-    padding: var(--padding-xl);
-    border-radius: 8px;
-    transition: opacity var(--animation-speed-slow, 0.25s) var(--animation-easing, ease-in-out),
-      visibility var(--animation-speed-slow, 0.25s);
-  }
-
-  .ghl-contact-form[data-loaded='true'] .ghl-contact-form__loader {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  /* Name and email sit side by side in the form, and stack on narrow screens. */
-  .ghl-contact-form__loader-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-md);
-  }
-
-  .ghl-contact-form__loader-row .ghl-contact-form__skeleton {
-    flex: 1 1 12rem;
-  }
-
-  .ghl-contact-form__skeleton {
-    display: block;
-    height: 3.25rem;
-    border-radius: 4px;
-    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-10));
-  }
-
-  .ghl-contact-form__skeleton--heading {
-    width: 60%;
-    height: 1.5rem;
-  }
-
-  .ghl-contact-form__skeleton--subheading {
-    width: 80%;
-    height: 1rem;
-    margin-block-end: var(--gap-md);
-  }
-
-  .ghl-contact-form__skeleton--message {
-    flex: 1;
-    min-height: 10rem;
-  }
-
-  .ghl-contact-form__skeleton--consent {
-    height: 2.25rem;
-  }
-
-  .ghl-contact-form__skeleton--button {
-    height: 3.5rem;
-    margin-block-start: var(--gap-md);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .ghl-contact-form__skeleton {
-      animation: ghl-contact-form-pulse 1.4s ease-in-out infinite;
-    }
-  }
-
-  @keyframes ghl-contact-form-pulse {
-    0%,
-    100% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0.45;
-    }
-  }
-
-  .ghl-contact-form__placeholder {
-    padding: var(--padding-lg) var(--padding-xl);
-    border: 1px dashed var(--color-input-border);
-  }
-{% endstylesheet %}
-
-{% javascript %}
-  class GhlContactFormComponent extends HTMLElement {
-    /* Longest the placeholder is allowed to stay up if the iframe never reports back. */
-    static FALLBACK_TIMEOUT = 8000;
-
-    /*
-     * The iframe often reports back within a couple of hundred milliseconds, which is
-     * long enough to notice a gap but too short to read as loading. Holding the
-     * placeholder for a beat makes it a state rather than a flicker.
-     */
-    static MIN_VISIBLE = 600;
-
-    connectedCallback() {
-      const iframe = this.querySelector('.ghl-contact-form__iframe');
-
-      if (!iframe) return;
-
-      this.markLoaded = this.markLoaded.bind(this);
-      this.handleMessage = this.handleMessage.bind(this);
-      this.reveal = this.reveal.bind(this);
-      this.startedAt = Date.now();
-
-      try {
-        this.formOrigin = new URL(iframe.src).origin;
-      } catch {
-        this.formOrigin = null;
-      }
-
-      iframe.addEventListener('load', this.markLoaded, { once: true });
-
-      /*
-       * The load event may already have fired before this element is upgraded, and a
-       * blocked or failed iframe never fires it at all. GoHighLevel's embed script posts
-       * a resize message once the form renders, so listen for that too, and fall back to
-       * a timer so the placeholder can never outlive the form it stands in for.
-       */
-      window.addEventListener('message', this.handleMessage);
-      this.timeout = setTimeout(this.markLoaded, GhlContactFormComponent.FALLBACK_TIMEOUT);
-    }
-
-    disconnectedCallback() {
-      this.clearWatchers();
-      clearTimeout(this.revealTimeout);
-    }
-
-    /* Other embeds and apps post to this window too, so only trust the form's own origin. */
-    handleMessage(event) {
-      if (this.formOrigin && event.origin !== this.formOrigin) return;
-
-      this.markLoaded();
-    }
-
-    markLoaded() {
-      if (this.revealing) return;
-      this.revealing = true;
-      this.clearWatchers();
-
-      const remaining = GhlContactFormComponent.MIN_VISIBLE - (Date.now() - this.startedAt);
-
-      if (remaining > 0) {
-        this.revealTimeout = setTimeout(this.reveal, remaining);
-        return;
-      }
-
-      this.reveal();
-    }
-
-    reveal() {
-      this.dataset.loaded = 'true';
-
-      const status = this.querySelector('.ghl-contact-form__status');
-      if (status) status.remove();
-    }
-
-    clearWatchers() {
-      clearTimeout(this.timeout);
-      window.removeEventListener('message', this.handleMessage);
-    }
-  }
-
-  if (!customElements.get('ghl-contact-form-component')) {
-    customElements.define('ghl-contact-form-component', GhlContactFormComponent);
-  }
-{% endjavascript %}
+</div>
 
 {% schema %}
 {
