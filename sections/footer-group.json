@@ -413,7 +413,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p><strong>Address:</strong>  <a href=\"https://www.google.com/maps/place/13315+Floral+Ave,+Poway,+CA+92064/@32.9564409,-117.0155891,17z/data=!3m1!4b1!4m6!3m5!1s0x80dbfb1e43b624a9:0x7c67f33db63aca25!8m2!3d32.9564364!4d-117.0130142!16s%2Fg%2F11c1fq70hl?entry=ttu&g_ep=EgoyMDI2MDkxMy4wIKXMDSoASAFQAw%3D%3D\" target=\"_blank\" title=\"https://www.google.com/maps/place/13315+Floral+Ave,+Poway,+CA+92064/@32.9564409,-117.0155891,17z/data=!3m1!4b1!4m6!3m5!1s0x80dbfb1e43b624a9:0x7c67f33db63aca25!8m2!3d32.9564364!4d-117.0130142!16s%2Fg%2F11c1fq70hl?entry=ttu&g_ep=EgoyMDI2MDkxMy4wIKXMDSoASAFQAw%3D%3D\">13315 Floral Avenue, Poway, CA 92064</a></p>",
+                "text": "<p><strong>Location : </strong>Poway, CA 92064<br/><strong>Phone Number:</strong> +1 858-648-5222</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
