@@ -184,6 +184,7 @@
             "product_custom_property_YEPbyJ": {
               "type": "product-custom-property",
               "name": "t:names.product_custom_property",
+              "disabled": true,
               "settings": {
                 "property_heading": "Ring Size(Men/Women)",
                 "property_description": "",
