@@ -17,6 +17,7 @@
         "image_LCpFTt": {
           "type": "image",
           "name": "t:names.image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VPLuxeLogov3.png",
             "link": "",
