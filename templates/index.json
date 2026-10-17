@@ -892,8 +892,8 @@
               "static": true,
               "settings": {
                 "height": "medium",
-                "ratio": "portrait",
-                "border_radius": 0
+                "ratio": "square",
+                "border_radius": 20
               },
               "blocks": {}
             }
