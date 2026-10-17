@@ -892,7 +892,7 @@
               "static": true,
               "settings": {
                 "height": "medium",
-                "ratio": "square",
+                "ratio": "portrait",
                 "border_radius": 0
               },
               "blocks": {}
