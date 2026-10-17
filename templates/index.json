@@ -173,13 +173,40 @@
             "cta_shop",
             "cta_services"
           ]
+        },
+        "text_nfyWCw": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p><em><strong>Secure checkout · Shipping across the U.S. · Personal support<br/></strong></em></p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.background }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "hero_eyebrow",
         "hero_heading",
         "hero_body",
-        "hero_ctas"
+        "hero_ctas",
+        "text_nfyWCw"
       ],
       "custom_css": [],
       "name": "t:names.hero",
