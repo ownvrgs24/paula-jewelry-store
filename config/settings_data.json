@@ -134,7 +134,7 @@
       },
       "2361305494380943633": {
         "type": "shopify://apps/discount-pop-up-mits/blocks/popup/4af6c0ec-92b5-4580-853d-dc1dc12b9128",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "popupName": "Default pop-up",
           "size": "xs",
@@ -154,7 +154,7 @@
           "formPhone": "",
           "gdprText": "I agree to subscribe to this newsletter and receive communications.",
           "formSubmitButton": "GET YOUR CODE HERE!",
-          "discountCode": "HOLDAYS10",
+          "discountCode": "HOLIDAYS10",
           "arrangeItems": "text,\nimage,\nform,\n\nform_email,\nform_gdpr,\nform_submit,",
           "triggerType": "time",
           "displayWidget": "0",
