@@ -131,6 +131,36 @@
         "type": "shopify://apps/coupon-x-discount-code-pop-up/blocks/coupon-x/49ebf3b1-06cb-46be-8af6-a07932a42780",
         "disabled": false,
         "settings": {}
+      },
+      "2361305494380943633": {
+        "type": "shopify://apps/discount-pop-up-mits/blocks/popup/4af6c0ec-92b5-4580-853d-dc1dc12b9128",
+        "disabled": false,
+        "settings": {
+          "popupName": "Default pop-up",
+          "size": "xs",
+          "fontSize": 10,
+          "darkMode": false,
+          "textColor": "#000000",
+          "buttonBgColor": "#3253C9",
+          "buttonTextColor": "#ffffff",
+          "bgColor": "{{ settings.color_palette.color5 }}",
+          "backdropColor": "rgba(0,0,0,0)",
+          "flat": true,
+          "fullScreenOnMobile": false,
+          "contentText": "<h1><strong>Enjoy an Extra 10% Off — Limited Time Only</strong></h1><p><br/>Subscribe to receive your exclusive discount code and stay connected with our latest fine jewelry arrivals.<br/></p>",
+          "contentImage": "shopify://shop_images/early-holiday-deals-10-off-banner.png",
+          "formName": "",
+          "formEmail": "Your Email",
+          "formPhone": "",
+          "gdprText": "I agree to subscribe to this newsletter and receive communications.",
+          "formSubmitButton": "GET YOUR CODE HERE!",
+          "discountCode": "HOLDAYS10",
+          "arrangeItems": "text,\nimage,\nform,\n\nform_email,\nform_gdpr,\nform_submit,",
+          "triggerType": "time",
+          "displayWidget": "0",
+          "scrollDepth": 50,
+          "afterClosing": "everyNewSession"
+        }
       }
     },
     "color_palette": {
