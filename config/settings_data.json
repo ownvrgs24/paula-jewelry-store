@@ -126,6 +126,11 @@
         "type": "shopify://apps/avada-seo-suite/blocks/avada-seo/15507c6e-1aa3-45d3-b698-7e175e033440",
         "disabled": false,
         "settings": {}
+      },
+      "13731700976389606599": {
+        "type": "shopify://apps/coupon-x-discount-code-pop-up/blocks/coupon-x/49ebf3b1-06cb-46be-8af6-a07932a42780",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_palette": {
