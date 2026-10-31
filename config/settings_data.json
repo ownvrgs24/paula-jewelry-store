@@ -127,11 +127,6 @@
         "disabled": false,
         "settings": {}
       },
-      "13731700976389606599": {
-        "type": "shopify://apps/coupon-x-discount-code-pop-up/blocks/coupon-x/49ebf3b1-06cb-46be-8af6-a07932a42780",
-        "disabled": false,
-        "settings": {}
-      },
       "2361305494380943633": {
         "type": "shopify://apps/discount-pop-up-mits/blocks/popup/4af6c0ec-92b5-4580-853d-dc1dc12b9128",
         "disabled": true,
@@ -161,6 +156,16 @@
           "scrollDepth": 50,
           "afterClosing": "everyNewSession"
         }
+      },
+      "13731700976389606599": {
+        "type": "shopify://apps/coupon-x-discount-code-pop-up/blocks/coupon-x/49ebf3b1-06cb-46be-8af6-a07932a42780",
+        "disabled": true,
+        "settings": {}
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_palette": {
