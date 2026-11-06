@@ -166,6 +166,11 @@
         "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
         "disabled": false,
         "settings": {}
+      },
+      "6406956604159796213": {
+        "type": "shopify://apps/smart-seo/blocks/smartseo/7b0a6064-ca2e-4392-9a1d-8c43c942357b",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_palette": {
